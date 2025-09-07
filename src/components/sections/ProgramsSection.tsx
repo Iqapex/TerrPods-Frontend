@@ -29,22 +29,24 @@ const ProgramsSection = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              icon: <Leaf className="h-12 w-12 text-yellow-600" />,
+              icon: <Leaf className="h-12 w-12 text-[#D6A900]" />,
               title: "Agroecology",
-              description: "Sustainable farming practices and food forest development",
-              link: "/programs#agroecology"
+              description:
+                "Sustainable farming practices and food forest development",
+              link: "/programs#agroecology",
             },
             {
-              icon: <Users className="h-12 w-12 text-yellow-600" />,
+              icon: <Users className="h-12 w-12 text-[#D6A900]" />,
               title: "Art Residencies",
               description: "Creative spaces for artists and innovators",
-              link: "/programs#residencies"
+              link: "/programs#residencies",
             },
             {
-              icon: <Calendar className="h-12 w-12 text-yellow-600" />,
+              icon: <Calendar className="h-12 w-12 text-[#D6A900]" />,
               title: "Workshops",
-              description: "Hands-on learning experiences in biomaterials and more",
-              link: "/programs#workshops"
+              description:
+                "Hands-on learning experiences in biomaterials and more",
+              link: "/programs#workshops",
             },
           ].map((program, index) => (
             <motion.div
@@ -61,7 +63,7 @@ const ProgramsSection = () => {
               <p className="text-gray-600 mb-4">{program.description}</p>
               <Link
                 to={program.link}
-                className="text-yellow-600 hover:text-yellow-700 font-medium inline-flex items-center"
+                className="text-[#D6A900] hover:text-[#B88F00] font-medium inline-flex items-center"
               >
                 Learn more
                 <ArrowRight className="ml-2 h-4 w-4" />

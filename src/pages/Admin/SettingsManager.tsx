@@ -1,3 +1,4 @@
+// src/pages/Admin/SettingsManager.tsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -47,12 +48,12 @@ const SettingsManager = () => {
 
   return (
     <div className="p-8 mt-16 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-8 text-gray-800 border-b pb-3">
+      <h1 className="text-3xl font-extrabold mb-8 text-gray-900 border-b-4 border-[#C5A900] pb-3">
         ⚙️ Global Site Settings
       </h1>
 
       {/* Logos Section */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Logos</h2>
 
         {/* Navbar Logo */}
@@ -63,7 +64,7 @@ const SettingsManager = () => {
           value={settings.navbarLogo}
           placeholder="Enter Navbar Logo URL"
           onChange={handleChange}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400 mb-4"
+          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900] mb-4"
         />
         {settings.navbarLogo && (
           <div className="flex items-center gap-3 mb-6">
@@ -84,7 +85,7 @@ const SettingsManager = () => {
           value={settings.footerLogo}
           placeholder="Enter Footer Logo URL"
           onChange={handleChange}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400 mb-4"
+          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900] mb-4"
         />
         {settings.footerLogo && (
           <div className="flex items-center gap-3">
@@ -99,7 +100,7 @@ const SettingsManager = () => {
       </div>
 
       {/* Colors Section */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Theme Colors</h2>
 
         <div className="flex items-center gap-8">
@@ -110,7 +111,7 @@ const SettingsManager = () => {
               name="primaryColor"
               value={settings.primaryColor}
               onChange={handleChange}
-              className="w-16 h-12 cursor-pointer border rounded"
+              className="w-16 h-12 cursor-pointer border rounded focus:ring-2 focus:ring-[#C5A900]"
             />
           </div>
           <div>
@@ -120,7 +121,7 @@ const SettingsManager = () => {
               name="secondaryColor"
               value={settings.secondaryColor}
               onChange={handleChange}
-              className="w-16 h-12 cursor-pointer border rounded"
+              className="w-16 h-12 cursor-pointer border rounded focus:ring-2 focus:ring-[#C5A900]"
             />
           </div>
         </div>
@@ -131,7 +132,7 @@ const SettingsManager = () => {
         <button
           onClick={handleSave}
           disabled={loading}
-          className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition disabled:opacity-50"
+          className="bg-[#C5A900] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#b19a00] transition disabled:opacity-50"
         >
           {loading ? "💾 Saving..." : "✅ Save Changes"}
         </button>

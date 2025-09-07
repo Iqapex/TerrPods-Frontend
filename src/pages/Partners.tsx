@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Building2, Users, Globe, Leaf } from 'lucide-react';
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";       // PANTONE 605C
+const TERRAPODS_YELLOW_DARK = "#b38a00";  // Darker shade for hover
+
 const Partners = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -44,8 +48,9 @@ const Partners = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+
       {/* Hero Section */}
-      <section className="relative py-20 bg-yellow-600 text-white">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="relative py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +78,7 @@ const Partners = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center"
               >
-                <div className="flex justify-center mb-4 text-yellow-600">
+                <div className="flex justify-center mb-4" style={{ color: TERRAPODS_YELLOW }}>
                   {stat.icon}
                 </div>
                 <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
@@ -119,7 +124,10 @@ const Partners = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <span className="inline-block bg-yellow-100 text-white-600 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4"
+                    style={{ backgroundColor: `${TERRAPODS_YELLOW}33`, color: TERRAPODS_YELLOW }} // Slightly transparent background
+                  >
                     {partner.type}
                   </span>
                   <p className="text-gray-600">{partner.description}</p>
@@ -131,19 +139,22 @@ const Partners = () => {
       </section>
 
       {/* Become a Partner */}
-      <section className="py-20 bg-yellow-600">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center text-white"
+            className="text-center"
           >
             <h2 className="text-3xl font-bold mb-6">Become a Partner</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Join us in our mission to create sustainable solutions and foster creativity
             </p>
-            <button className="bg-white text-yellow-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+            <button
+              style={{ color: TERRAPODS_YELLOW, backgroundColor: "white" }}
+              className="px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+            >
               Partner With Us
             </button>
           </motion.div>

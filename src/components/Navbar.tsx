@@ -39,10 +39,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        scrolled
           ? "bg-white shadow-sm border-b border-gray-100"
           : "bg-white/90 backdrop-blur-md"
-        }`}
+      }`}
     >
       <div className="max-w-screen mx-auto md:px-24 sm:px-6">
         <div className="flex justify-between h-20 items-center">
@@ -52,10 +53,9 @@ const Navbar = () => {
               <div className="p-2 rounded-full bg-gradient-to-br from-[#D4A017] to-[#B38912] shadow-md">
                 <Leaf className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-black drop-shadow-sm">
+              <span className="text-xl font-bold text-gray-900 group-hover:text-[#D4A017] transition-colors">
                 TerraPods
               </span>
-
             </Link>
           </motion.div>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
                   <>
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className="flex items-center gap-1 px-3 py-2 font-medium text-gray-600 hover:text-[#D4A017]"
+                      className="flex items-center gap-1 px-3 py-2 font-medium text-gray-600 hover:text-[#D4A017] transition-colors"
                     >
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
@@ -79,7 +79,7 @@ const Navbar = () => {
                             {sub.path ? (
                               <Link
                                 to={sub.path}
-                                className="block px-4 py-2 text-gray-600 hover:bg-[#FFF9E5] hover:text-[#D4A017]"
+                                className="block px-4 py-2 text-gray-600 hover:bg-[#FFF9E5] hover:text-[#D4A017] transition-colors"
                               >
                                 {sub.name}
                               </Link>
@@ -96,10 +96,11 @@ const Navbar = () => {
                 ) : item.path ? (
                   <Link
                     to={item.path}
-                    className={`px-3 py-2 font-medium ${location.pathname === item.path
+                    className={`px-3 py-2 font-medium ${
+                      location.pathname === item.path
                         ? "text-[#D4A017]"
-                        : "text-gray-600 hover:text-[#D4A017]"
-                      }`}
+                        : "text-gray-600 hover:text-[#D4A017] transition-colors"
+                    }`}
                   >
                     {item.name}
                   </Link>
@@ -115,7 +116,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md hover:bg-gray-50"
+            className="lg:hidden p-2 rounded-md hover:bg-[#FFF9E5] transition-colors"
           >
             {isOpen ? (
               <X className="h-6 w-6 text-gray-700" />
@@ -137,17 +138,21 @@ const Navbar = () => {
           >
             <ul className="flex flex-col">
               {navItems.map((item, i) => (
-                <li key={item._id || `mobile-${i}`} className="border-b border-gray-100">
+                <li
+                  key={item._id || `mobile-${i}`}
+                  className="border-b border-gray-100"
+                >
                   {item.subMenu && item.subMenu.length > 0 ? (
                     <>
                       <button
                         onClick={() => toggleDropdown(item.name)}
-                        className="flex justify-between items-center w-full px-4 py-3 text-left text-gray-700"
+                        className="flex justify-between items-center w-full px-4 py-3 text-left text-gray-700 hover:text-[#D4A017] transition-colors"
                       >
                         {item.name}
                         <ChevronDown
-                          className={`h-4 w-4 transform ${openDropdown === item.name ? "rotate-180" : ""
-                            }`}
+                          className={`h-4 w-4 transform transition-transform ${
+                            openDropdown === item.name ? "rotate-180 text-[#D4A017]" : ""
+                          }`}
                         />
                       </button>
                       {openDropdown === item.name && (
@@ -157,7 +162,7 @@ const Navbar = () => {
                               {sub.path ? (
                                 <Link
                                   to={sub.path}
-                                  className="block px-8 py-2 text-gray-600 hover:bg-[#FFEFA0] hover:text-[#D4A017]"
+                                  className="block px-8 py-2 text-gray-600 hover:bg-[#FFEFA0] hover:text-[#D4A017] transition-colors"
                                   onClick={() => setIsOpen(false)}
                                 >
                                   {sub.name}
@@ -175,7 +180,7 @@ const Navbar = () => {
                   ) : item.path ? (
                     <Link
                       to={item.path}
-                      className="block px-4 py-3 text-gray-700 hover:bg-[#FFF9E5] hover:text-[#D4A017]"
+                      className="block px-4 py-3 text-gray-700 hover:bg-[#FFF9E5] hover:text-[#D4A017] transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}

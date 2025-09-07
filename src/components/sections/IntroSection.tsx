@@ -27,17 +27,17 @@ const IntroSection = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              icon: <Sprout className="h-12 w-12 text-yellow-600" />,
+              icon: <Sprout className="h-12 w-12 text-[#D6A900]" />, // TerraPods Yellow
               title: "Sustainable Growth",
               description: "Fostering ecological practices that nurture both land and community",
             },
             {
-              icon: <Heart className="h-12 w-12 text-yellow-600" />,
+              icon: <Heart className="h-12 w-12 text-[#D6A900]" />, // TerraPods Yellow
               title: "Community Care",
               description: "Building strong connections through shared learning and creation",
             },
             {
-              icon: <Globe className="h-12 w-12 text-yellow-600" />,
+              icon: <Globe className="h-12 w-12 text-[#D6A900]" />, // TerraPods Yellow
               title: "Global Impact",
               description: "Inspiring change through innovative environmental solutions",
             },

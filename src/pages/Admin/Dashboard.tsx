@@ -1,21 +1,26 @@
 import { Link } from "react-router-dom";
 
+// ✅ TerraPods brand yellow (Pantone 605C)
+const TERRAPODS_YELLOW = "#D6A900";
+const TERRAPODS_YELLOW_DARK = "#B88C00";
+
 const Dashboard = () => {
   return (
-    <div className="p-8 mt-16"> {/* ✅ mt-16 pushes below navbar */}
-      <h1 className="text-3xl font-extrabold mb-8 text-gray-800 border-b pb-3">
+    <div className="p-8 mt-16">
+      {/* ✅ TerraPods Yellow underline */}
+      <h1
+        className="text-3xl font-extrabold mb-8 text-gray-800 border-b-4 pb-3 inline-block"
+        style={{ borderColor: TERRAPODS_YELLOW }}
+      >
         Admin Dashboard
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Each card */}
         <Link
           to="/admin/applications"
           className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border hover:border-blue-500"
         >
-          <h2 className="text-lg font-semibold text-blue-600">
-            📂 Manage Applications
-          </h2>
+          <h2 className="text-lg font-semibold text-blue-600">📂 Manage Applications</h2>
           <p className="text-sm text-gray-600 mt-2">
             Review and handle application submissions.
           </p>
@@ -57,9 +62,7 @@ const Dashboard = () => {
           to="/admin/menu"
           className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border hover:border-indigo-500"
         >
-          <h2 className="text-lg font-semibold text-indigo-600">
-            🧭 Manage Navbar Menu
-          </h2>
+          <h2 className="text-lg font-semibold text-indigo-600">🧭 Manage Navbar Menu</h2>
           <p className="text-sm text-gray-600 mt-2">
             Update navigation links and submenus.
           </p>
@@ -75,11 +78,16 @@ const Dashboard = () => {
           </p>
         </Link>
 
+        {/* ✅ TerraPods Yellow card */}
         <Link
           to="/admin/settings"
-          className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border hover:border-yellow-500"
+          className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border"
+          style={{ borderColor: TERRAPODS_YELLOW }}
         >
-          <h2 className="text-lg font-semibold text-yellow-600">
+          <h2
+            className="text-lg font-semibold"
+            style={{ color: TERRAPODS_YELLOW }}
+          >
             ⚙️ Global Settings
           </h2>
           <p className="text-sm text-gray-600 mt-2">

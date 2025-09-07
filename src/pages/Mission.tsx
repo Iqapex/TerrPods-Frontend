@@ -12,7 +12,8 @@ const Mission = () => {
   return (
     <div className="min-h-screen">
       {/* Our Mission */}
-      <section className="py-16 bg-green-100">
+      <section className="py-16 bg-[#FFF5E0]"> 
+        {/* soft tint of TerraPods yellow */}
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold text-emerald-800 mb-6 mt-20">Our Mission</h1>
           <p className="text-gray-700 leading-relaxed mb-6 text-lg">
@@ -32,7 +33,7 @@ const Mission = () => {
           <p className="text-gray-700 leading-relaxed mb-6">
             We are committed to creating an inclusive and safe space where diverse voices can
             contribute to reimagining sustainable futures. Guided by the principles of ecological
-            balance, cultural heritage, and creative collaboration, we strive to plant seeds —
+            balance, cultural heritage, and creative collaboration, we strive to plant seeds — 
             both literal and metaphorical — that will flourish for generations to come.
           </p>
           <blockquote className="border-l-4 border-emerald-500 pl-4 italic text-gray-600 mt-8">
@@ -78,10 +79,10 @@ const Mission = () => {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: <Leaf className="h-8 w-8 text-green-600" />, text: "Sustainable Growth" },
-                  { icon: <Heart className="h-8 w-8 text-green-600" />, text: "Community Care" },
-                  { icon: <Globe className="h-8 w-8 text-green-600" />, text: "Global Impact" },
-                  { icon: <Sun className="h-8 w-8 text-green-600" />, text: "Innovation" }
+                  { icon: <Leaf className="h-8 w-8 text-[#D6A537]" />, text: "Sustainable Growth" },
+                  { icon: <Heart className="h-8 w-8 text-[#D6A537]" />, text: "Community Care" },
+                  { icon: <Globe className="h-8 w-8 text-[#D6A537]" />, text: "Global Impact" },
+                  { icon: <Sun className="h-8 w-8 text-[#D6A537]" />, text: "Innovation" }
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     {item.icon}
@@ -142,7 +143,7 @@ const Mission = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#D6A537]"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>

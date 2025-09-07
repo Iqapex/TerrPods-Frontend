@@ -18,7 +18,9 @@ const Donate = () => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -30,43 +32,39 @@ const Donate = () => {
         email: form.email,
         message: form.message
       });
-      toast.success("Message sent successfully!");
+      toast.success('Message sent successfully!');
       setForm({ ...form, message: '' });
     } catch (err) {
       console.error(err);
-      toast.error("Failed to send message. Please try again.");
+      toast.error('Failed to send message. Please try again.');
     }
   };
 
   const handleDonate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/donations/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('http://localhost:5000/api/donations/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
           donationType: form.donationType,
-          amount: parseFloat(form.amount),
-        }),
+          amount: parseFloat(form.amount)
+        })
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
       } else {
-        toast.error("No URL received from Stripe.");
+        toast.error('No URL received from Stripe.');
       }
     } catch (error) {
-      console.error("Fetch failed:", error);
-      toast.error("Failed to connect to backend. Please make sure the server is running.");
+      console.error('Fetch failed:', error);
+      toast.error('Failed to connect to backend. Please make sure the server is running.');
     }
   };
 
@@ -107,10 +105,11 @@ const Donate = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-4 gap-8 mb-16">
-            {[{ icon: <Tree className="h-12 w-12" />, number: "1000+", label: "Trees Planted" },
-              { icon: <Heart className="h-12 w-12" />, number: "500+", label: "Donors" },
-              { icon: <Users className="h-12 w-12" />, number: "200+", label: "Artists Supported" },
-              { icon: <Leaf className="h-12 w-12" />, number: "50+", label: "Projects Funded" }
+            {[
+              { icon: <Tree className="h-12 w-12" />, number: '1000+', label: 'Trees Planted' },
+              { icon: <Heart className="h-12 w-12" />, number: '500+', label: 'Donors' },
+              { icon: <Users className="h-12 w-12" />, number: '200+', label: 'Artists Supported' },
+              { icon: <Leaf className="h-12 w-12" />, number: '50+', label: 'Projects Funded' }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -144,24 +143,26 @@ const Donate = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[{
-              title: "One-Time Donation",
-              description: "Make a single contribution to support our programs",
-              amount: "Choose Amount",
-              color: "bg-white"
-            },
-            {
-              title: "Monthly Supporter",
-              description: "Become a regular contributor to our mission",
-              amount: "From $10/month",
-              color: "bg-[#D4A017] text-white"
-            },
-            {
-              title: "Corporate Sponsorship",
-              description: "Partner with us for lasting impact",
-              amount: "Custom Amount",
-              color: "bg-white"
-            }].map((option, index) => (
+            {[
+              {
+                title: 'One-Time Donation',
+                description: 'Make a single contribution to support our programs',
+                amount: 'Choose Amount',
+                color: 'bg-white'
+              },
+              {
+                title: 'Monthly Supporter',
+                description: 'Become a regular contributor to our mission',
+                amount: 'From $10/month',
+                color: 'bg-[#D4A017] text-white'
+              },
+              {
+                title: 'Corporate Sponsorship',
+                description: 'Partner with us for lasting impact',
+                amount: 'Custom Amount',
+                color: 'bg-white'
+              }
+            ].map((option, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -169,13 +170,25 @@ const Donate = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className={`${option.color} p-8 rounded-lg shadow-lg text-center`}
               >
-                <h3 className={`text-2xl font-bold mb-4 ${option.color === 'bg-white' ? 'text-gray-900' : 'text-white'}`}>
+                <h3
+                  className={`text-2xl font-bold mb-4 ${
+                    option.color === 'bg-white' ? 'text-gray-900' : 'text-white'
+                  }`}
+                >
                   {option.title}
                 </h3>
-                <p className={`mb-6 ${option.color === 'bg-white' ? 'text-gray-600' : 'text-white'}`}>
+                <p
+                  className={`mb-6 ${
+                    option.color === 'bg-white' ? 'text-gray-600' : 'text-white'
+                  }`}
+                >
                   {option.description}
                 </p>
-                <div className={`text-xl font-semibold mb-6 ${option.color === 'bg-white' ? 'text-gray-900' : 'text-white'}`}>
+                <div
+                  className={`text-xl font-semibold mb-6 ${
+                    option.color === 'bg-white' ? 'text-gray-900' : 'text-white'
+                  }`}
+                >
                   {option.amount}
                 </div>
                 <button
@@ -259,7 +272,9 @@ const Donate = () => {
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4">
           <div className="bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-xl font-bold mb-4 text-center text-[#B38912]">Contact for CSR/Partnership</h2>
+            <h2 className="text-xl font-bold mb-4 text-center text-[#D4A017]">
+              Contact for CSR/Partnership
+            </h2>
             <form onSubmit={handleFormSubmit} className="flex flex-col gap-3">
               <input
                 name="name"
@@ -290,7 +305,7 @@ const Donate = () => {
               />
               <button
                 type="submit"
-                className="bg-yellow-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                className="bg-[#D4A017] text-white py-2 rounded hover:bg-[#B38912] transition"
               >
                 Send Message
               </button>

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";
+const TERRAPODS_YELLOW_DARK = "#b38a00";
+
 const programData = {
   agroecology: {
     title: "Agroecology",
@@ -82,7 +86,7 @@ const ProgramApplication = () => {
 
   if (!program) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-center text-red-600 text-xl font-semibold">
+      <div className="min-h-screen flex items-center justify-center text-center text-yellow-600 text-xl font-semibold">
         Program not found
       </div>
     );
@@ -148,8 +152,9 @@ const ProgramApplication = () => {
             <div key={index} className="flex-1 text-xs sm:text-sm text-center">
               <div
                 className={`h-3 w-3 rounded-full mx-auto mb-1 ${
-                  index === currentStep ? "bg-green-600" : "bg-gray-300"
+                  index === currentStep ? "bg-yellow-600" : "bg-gray-300"
                 }`}
+                style={{ backgroundColor: index === currentStep ? TERRAPODS_YELLOW : undefined }}
               />
               {step}
             </div>
@@ -181,7 +186,8 @@ const ProgramApplication = () => {
                   name="agreeTerms"
                   checked={agreeTerms}
                   onChange={(e) => setAgreeTerms(e.target.checked)}
-                  className="h-4 w-4 text-green-600"
+                  className="h-4 w-4"
+                  style={{ accentColor: TERRAPODS_YELLOW }}
                 />
                 <span className="text-sm text-gray-600">
                   I agree to the terms and conditions.
@@ -195,7 +201,7 @@ const ProgramApplication = () => {
               </label>
               <select
                 name="mealPreference"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-yellow-500"
                 onChange={handleInputChange}
               >
                 <option value="">Select</option>
@@ -215,6 +221,7 @@ const ProgramApplication = () => {
                     value="shared"
                     onChange={handleInputChange}
                     className="mr-2"
+                    style={{ accentColor: TERRAPODS_YELLOW }}
                   />
                   Shared
                 </label>
@@ -225,6 +232,7 @@ const ProgramApplication = () => {
                     value="private"
                     onChange={handleInputChange}
                     className="mr-2"
+                    style={{ accentColor: TERRAPODS_YELLOW }}
                   />
                   Private
                 </label>
@@ -240,7 +248,8 @@ const ProgramApplication = () => {
                 name={program.steps[currentStep]}
                 value={formData[program.steps[currentStep]] || ""}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring focus:border-green-500"
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring"
+                style={{ borderColor: "#d1d5db", focusBorderColor: TERRAPODS_YELLOW }}
                 placeholder={`Enter ${program.steps[currentStep]}...`}
               />
             </>
@@ -255,15 +264,21 @@ const ProgramApplication = () => {
             className={`px-4 py-2 rounded-lg ${
               currentStep === 0
                 ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                : "bg-green-500 text-white hover:bg-green-600"
+                : "text-white"
             }`}
+            style={{
+              backgroundColor: currentStep === 0 ? undefined : TERRAPODS_YELLOW,
+            }}
           >
             Back
           </button>
 
           <button
             onClick={next}
-            className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700"
+            className="px-6 py-2 rounded-lg text-white"
+            style={{ backgroundColor: TERRAPODS_YELLOW }}
+            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW_DARK)}
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW)}
           >
             {isFinalStep ? "Submit" : "Next"}
           </button>
@@ -271,7 +286,7 @@ const ProgramApplication = () => {
 
         {/* Success Message */}
         {isFinalStep && submitted && (
-          <div className="text-green-700 text-lg font-medium text-center mt-8">
+          <div className="text-yellow-700 text-lg font-medium text-center mt-8">
              Your application has been submitted!
           </div>
         )}

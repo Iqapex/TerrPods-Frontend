@@ -1,3 +1,5 @@
+// src/pages/Admin/FooterManager.tsx
+
 import { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 
@@ -52,7 +54,11 @@ const FooterManager = () => {
           quickLinks: res.data.quickLinks?.length
             ? res.data.quickLinks
             : [{ label: "", link: "" }],
-          contactInfo: res.data.contactInfo || { address: "", email: "", phone: "" },
+          contactInfo: res.data.contactInfo || {
+            address: "",
+            email: "",
+            phone: "",
+          },
           socialLinks: res.data.socialLinks?.length
             ? res.data.socialLinks
             : [{ platform: "", url: "", icon: "" }],
@@ -91,7 +97,11 @@ const FooterManager = () => {
   };
 
   // Handle social link changes
-  const handleSocialLinkChange = (index: number, field: SocialLinkKey, value: string) => {
+  const handleSocialLinkChange = (
+    index: number,
+    field: SocialLinkKey,
+    value: string
+  ) => {
     const updated = [...footer.socialLinks];
     updated[index] = { ...updated[index], [field]: value };
     setFooter({ ...footer, socialLinks: updated });
@@ -99,7 +109,10 @@ const FooterManager = () => {
 
   // Add quick link
   const addQuickLink = () => {
-    setFooter({ ...footer, quickLinks: [...footer.quickLinks, { label: "", link: "" }] });
+    setFooter({
+      ...footer,
+      quickLinks: [...footer.quickLinks, { label: "", link: "" }],
+    });
   };
 
   // Add social link
@@ -124,12 +137,12 @@ const FooterManager = () => {
 
   return (
     <div className="p-8 mt-16 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-8 text-gray-800 border-b pb-3">
+      <h1 className="text-3xl font-extrabold mb-8 text-gray-900 border-b-4 border-[#C5A900] pb-3">
         📑 Footer Manager
       </h1>
 
       {/* Footer Logo */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Footer Logo</h2>
         <input
           type="text"
@@ -137,7 +150,7 @@ const FooterManager = () => {
           name="footerLogo"
           value={footer.footerLogo}
           onChange={handleChange}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400 mb-4"
+          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900] mb-4"
         />
         {footer.footerLogo && (
           <div className="flex items-center gap-3">
@@ -152,20 +165,20 @@ const FooterManager = () => {
       </div>
 
       {/* Description */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Description</h2>
         <textarea
           placeholder="Footer Description"
           name="description"
           value={footer.description}
           onChange={handleChange}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
           rows={3}
         />
       </div>
 
       {/* Quick Links */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Quick Links</h2>
         {footer.quickLinks.map((link, idx) => (
           <div key={idx} className="flex gap-2 mb-2">
@@ -174,27 +187,27 @@ const FooterManager = () => {
               placeholder="Label"
               value={link.label}
               onChange={(e) => handleQuickLinkChange(idx, "label", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
             />
             <input
               type="text"
               placeholder="Link"
               value={link.link}
               onChange={(e) => handleQuickLinkChange(idx, "link", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
             />
           </div>
         ))}
         <button
           onClick={addQuickLink}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          className="bg-[#C5A900] text-white px-4 py-2 rounded-lg shadow hover:bg-[#b19a00] transition"
         >
           ➕ Add Quick Link
         </button>
       </div>
 
       {/* Contact Info */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Contact Info</h2>
         <input
           type="text"
@@ -202,7 +215,7 @@ const FooterManager = () => {
           name="address"
           value={footer.contactInfo.address}
           onChange={handleContactChange}
-          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-[#C5A900]"
         />
         <input
           type="email"
@@ -210,7 +223,7 @@ const FooterManager = () => {
           name="email"
           value={footer.contactInfo.email}
           onChange={handleContactChange}
-          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-[#C5A900]"
         />
         <input
           type="text"
@@ -218,12 +231,12 @@ const FooterManager = () => {
           name="phone"
           value={footer.contactInfo.phone}
           onChange={handleContactChange}
-          className="border p-2 w-full rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-2 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
         />
       </div>
 
       {/* Social Links */}
-      <div className="bg-white shadow-md rounded-xl border p-6 mb-8">
+      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Social Links</h2>
         {footer.socialLinks.map((link, idx) => (
           <div key={idx} className="flex gap-2 mb-2">
@@ -232,27 +245,27 @@ const FooterManager = () => {
               placeholder="Platform"
               value={link.platform}
               onChange={(e) => handleSocialLinkChange(idx, "platform", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
             />
             <input
               type="text"
               placeholder="URL"
               value={link.url}
               onChange={(e) => handleSocialLinkChange(idx, "url", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
             />
             <input
               type="text"
               placeholder="Icon URL"
               value={link.icon}
               onChange={(e) => handleSocialLinkChange(idx, "icon", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
             />
           </div>
         ))}
         <button
           onClick={addSocialLink}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          className="bg-[#C5A900] text-white px-4 py-2 rounded-lg shadow hover:bg-[#b19a00] transition"
         >
           ➕ Add Social Link
         </button>
@@ -263,7 +276,7 @@ const FooterManager = () => {
         <button
           onClick={handleSave}
           disabled={loading}
-          className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition disabled:opacity-50"
+          className="bg-[#C5A900] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#b19a00] transition disabled:opacity-50"
         >
           {loading ? "💾 Saving..." : "✅ Save Changes"}
         </button>

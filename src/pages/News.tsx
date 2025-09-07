@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";       // PANTONE 605C
+const TERRAPODS_YELLOW_DARK = "#b38a00";  // Darker for hover
+
 const News = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -39,8 +43,9 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+
       {/* Featured News */}
-      <section className="relative py-20 bg-yellow-600">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="relative py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -58,7 +63,8 @@ const News = () => {
               <p className="text-xl mb-8 opacity-90">
                 A journey of sustainable practices, artistic expression, and community building that has transformed our local ecosystem.
               </p>
-              <button className="bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold inline-flex items-center hover:bg-gray-100 transition-colors">
+              <button style={{ color: TERRAPODS_YELLOW, backgroundColor: "white" }}
+                      className="px-6 py-3 rounded-full font-semibold inline-flex items-center hover:bg-gray-100 transition-colors">
                 Read Full Story
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
@@ -108,15 +114,15 @@ const News = () => {
                 />
                 <div className="p-6">
                   <div className="flex items-center space-x-2 mb-4">
-                    <Tag className="h-4 w-4 text-yellow-600" />
-                    <span className="text-sm text-yellow-600">{article.category}</span>
+                    <Tag className="h-4 w-4" style={{ color: TERRAPODS_YELLOW }} />
+                    <span className="text-sm" style={{ color: TERRAPODS_YELLOW }}>{article.category}</span>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {article.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{article.excerpt}</p>
 
-                  {/*  Embedded Video */}
+                  {/* Embedded Video */}
                   {article.videoUrl && (
                     <iframe
                       src={article.videoUrl}
@@ -163,11 +169,10 @@ const News = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`px-6 py-2 rounded-full ${
-                  index === 0
-                    ? 'bg-yellow-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-yellow-50 hover:text-yellow-700'
-                } transition-colors`}
+                style={ index === 0
+                  ? { backgroundColor: TERRAPODS_YELLOW, color: "white" }
+                  : { backgroundColor: "#f3f3f3", color: "#333" } }
+                className={`px-6 py-2 rounded-full transition-colors hover:brightness-90`}
               >
                 {category}
               </motion.button>

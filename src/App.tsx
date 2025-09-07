@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 
 // Main Pages
 import Home from './pages/Home';
-import Mission from "./pages/Mission"; // <-- import your new Mission page
+import Mission from "./pages/Mission"; 
 import ArtistsShowcase from './pages/ArtistsShowcase';
 import News from './pages/News';
 import Blog from './pages/Blog';
@@ -20,7 +20,6 @@ import ProgramApplication from './pages/ProgramApplication';
 import Calendar from './pages/Calendar';
 import MembershipPortal from './pages/MembershipPortal';
 import AuthForm from './components/AuthForm';
-
 
 // User Dashboard Pages
 import DashboardLayout from './components/Dashboard/DashboardLayout';
@@ -49,9 +48,6 @@ import MenuManager from "./pages/Admin/MenuManager";
 import FooterManager from "./pages/Admin/FooterManager";
 import SettingsManager from "./pages/Admin/SettingsManager";
 
-
-
-
 function App() {
   return (
     <Router>
@@ -65,29 +61,29 @@ function App() {
 
             {/* Public Pages */}
             <Route path="/" element={<Home />} />
-             <Route path="/about/mission" element={<Mission />} /> {/* New Mission Route */}
+            <Route path="/about/mission" element={<Mission />} /> 
             <Route path="/artists" element={<ArtistsShowcase />} />
+
+            {/* News Routes ✅ */}
             <Route path="/news" element={<News />} />
+            <Route path="/media/news" element={<News />} />
+
+            {/* Blog Routes ✅ */}
             <Route path="/blog" element={<Blog />} />
+            <Route path="/media/blog" element={<Blog />} />
+
             <Route path="/donate" element={<Donate />} />
             <Route path="/about/partners" element={<Partners />} />
             <Route path="/about" element={<About />} />
             <Route path="/about/team" element={<Team />} />
             <Route path="/contact" element={<Contact />} />
-            
 
             <Route path="/programmes" element={<Programs />} />
-
-
             <Route path="/calendar" element={<Calendar />} />
-
             <Route path="/events/calendar" element={<Calendar />} />
-
             <Route path="/events/membership-faqs" element={<MembershipPortal />} />
             <Route path="/apply/:slug" element={<ProgramApplication />} />
             <Route path="/workshop-register" element={<WorkshopRegister />} />
-
-            
 
             {/* User Dashboard */}
             <Route path="/dashboard" element={<DashboardLayout />}>

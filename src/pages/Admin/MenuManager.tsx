@@ -1,3 +1,4 @@
+// src/pages/Admin/MenuManager.tsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -67,13 +68,13 @@ const MenuManager = () => {
   };
 
   return (
-    <div className="p-8 mt-16"> {/*  mt-16 pushes below navbar */}
-      <h1 className="text-3xl font-extrabold mb-8 text-gray-800 border-b pb-3">
+    <div className="p-4 sm:p-6 md:p-8 mt-16 max-w-7xl mx-auto">
+      <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-gray-900 border-b-4 border-[#C5A900] pb-2 sm:pb-3">
         🧭 Menu Manager
       </h1>
 
       {/* Add Menu Form */}
-      <div className="mb-8 bg-white p-6 shadow-md rounded-xl border space-y-3">
+      <div className="mb-6 sm:mb-8 bg-white p-4 sm:p-6 shadow-lg rounded-xl border-l-4 border-[#C5A900] space-y-3">
         <h2 className="text-lg font-semibold text-gray-700 mb-2">
           ➕ Add New Menu
         </h2>
@@ -82,18 +83,18 @@ const MenuManager = () => {
           placeholder="Menu Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-2 sm:p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
         />
         <input
           type="text"
           placeholder="Path (optional if subMenu)"
           value={form.path}
           onChange={(e) => setForm({ ...form, path: e.target.value })}
-          className="border p-3 w-full rounded-md focus:ring-2 focus:ring-blue-400"
+          className="border p-2 sm:p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
         />
         <button
           onClick={handleAdd}
-          className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700 transition disabled:opacity-50"
+          className="bg-[#C5A900] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-md hover:bg-[#b19a00] transition disabled:opacity-50 w-full sm:w-auto"
           disabled={loading}
         >
           {loading ? "Adding..." : "Add Menu"}
@@ -101,19 +102,17 @@ const MenuManager = () => {
       </div>
 
       {/* Menu List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {menus.map((menu, menuIndex) => (
           <div
             key={menu._id ? `menu-${menu._id}` : `menu-${menuIndex}`}
-            className="bg-white border rounded-xl shadow-md p-5 hover:shadow-lg transition"
+            className="bg-white border-l-4 border-[#C5A900] rounded-xl shadow-lg p-4 sm:p-5 hover:shadow-xl transition flex flex-col"
           >
-            <div className="flex justify-between items-center">
-              <h3 className="font-semibold text-lg text-gray-800">
-                {menu.name}
-              </h3>
+            <div className="flex justify-between items-center mb-3 sm:mb-4">
+              <h3 className="font-semibold text-lg text-gray-800">{menu.name}</h3>
               <button
                 onClick={() => handleDelete(menu._id)}
-                className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded-md hover:bg-red-600 transition text-sm sm:text-base"
               >
                 Delete
               </button>
@@ -121,7 +120,7 @@ const MenuManager = () => {
 
             {/* Submenus */}
             {menu.subMenu?.length > 0 && (
-              <ul className="ml-4 mt-3 space-y-2">
+              <ul className="ml-2 sm:ml-4 mb-3 sm:mb-4 space-y-1 sm:space-y-2 overflow-x-auto">
                 {menu.subMenu.map((sub, subIndex) => (
                   <li
                     key={
@@ -129,7 +128,7 @@ const MenuManager = () => {
                         ? `menu-${menu._id || menuIndex}-sub-${sub._id}`
                         : `menu-${menu._id || menuIndex}-sub-${subIndex}`
                     }
-                    className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded-md"
+                    className="flex justify-between items-center bg-gray-50 px-2 sm:px-3 py-1 sm:py-2 rounded-md text-sm sm:text-base whitespace-nowrap"
                   >
                     <span>
                       {sub.name}{" "}
@@ -139,7 +138,7 @@ const MenuManager = () => {
                       onClick={() =>
                         sub._id && handleDeleteSubmenu(menu._id, sub._id)
                       }
-                      className="text-red-500 text-sm hover:underline"
+                      className="text-red-500 text-xs sm:text-sm hover:underline ml-2 sm:ml-0"
                     >
                       ❌ Remove
                     </button>
@@ -149,7 +148,7 @@ const MenuManager = () => {
             )}
 
             {/* Add Submenu Form */}
-            <div className="mt-4 flex gap-2">
+            <div className="mt-auto flex flex-col sm:flex-row gap-2 sm:gap-2.5">
               <input
                 type="text"
                 placeholder="Submenu Name"
@@ -163,7 +162,7 @@ const MenuManager = () => {
                     },
                   }))
                 }
-                className="border p-2 rounded-md flex-1 focus:ring-2 focus:ring-blue-400"
+                className="border p-2 rounded-md flex-1 focus:ring-2 focus:ring-[#C5A900]"
               />
               <input
                 type="text"
@@ -178,11 +177,11 @@ const MenuManager = () => {
                     },
                   }))
                 }
-                className="border p-2 rounded-md flex-1 focus:ring-2 focus:ring-blue-400"
+                className="border p-2 rounded-md flex-1 focus:ring-2 focus:ring-[#C5A900]"
               />
               <button
                 onClick={() => handleAddSubmenu(menu._id)}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                className="bg-[#C5A900] text-white px-3 py-2 rounded-md hover:bg-[#b19a00] transition w-full sm:w-auto"
               >
                 Add
               </button>
