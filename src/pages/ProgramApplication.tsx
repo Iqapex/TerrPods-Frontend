@@ -94,8 +94,14 @@ const ProgramApplication = () => {
 
   const isFinalStep = currentStep === program.steps.length - 1;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
+  // ✅ Fixed typing for "checked"
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const checked =
+      e.target instanceof HTMLInputElement ? e.target.checked : false;
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked.toString() : value,
@@ -154,7 +160,10 @@ const ProgramApplication = () => {
                 className={`h-3 w-3 rounded-full mx-auto mb-1 ${
                   index === currentStep ? "bg-yellow-600" : "bg-gray-300"
                 }`}
-                style={{ backgroundColor: index === currentStep ? TERRAPODS_YELLOW : undefined }}
+                style={{
+                  backgroundColor:
+                    index === currentStep ? TERRAPODS_YELLOW : undefined,
+                }}
               />
               {step}
             </div>
@@ -174,10 +183,7 @@ const ProgramApplication = () => {
               <label className="block font-medium text-gray-700 mb-2">
                 Upload CV / Portfolio
               </label>
-              <input
-                type="file"
-                className="w-full px-4 py-2 border rounded-lg"
-              />
+              <input type="file" className="w-full px-4 py-2 border rounded-lg" />
 
               <label className="flex items-center space-x-2 mt-4">
                 <input
@@ -248,8 +254,8 @@ const ProgramApplication = () => {
                 name={program.steps[currentStep]}
                 value={formData[program.steps[currentStep]] || ""}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring"
-                style={{ borderColor: "#d1d5db", focusBorderColor: TERRAPODS_YELLOW }}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring focus:ring-yellow-500"
+                style={{ borderColor: "#d1d5db" }} // ✅ removed invalid "focusBorderColor"
                 placeholder={`Enter ${program.steps[currentStep]}...`}
               />
             </>
@@ -277,8 +283,12 @@ const ProgramApplication = () => {
             onClick={next}
             className="px-6 py-2 rounded-lg text-white"
             style={{ backgroundColor: TERRAPODS_YELLOW }}
-            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW_DARK)}
-            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW)}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW_DARK)
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = TERRAPODS_YELLOW)
+            }
           >
             {isFinalStep ? "Submit" : "Next"}
           </button>
@@ -287,7 +297,7 @@ const ProgramApplication = () => {
         {/* Success Message */}
         {isFinalStep && submitted && (
           <div className="text-yellow-700 text-lg font-medium text-center mt-8">
-             Your application has been submitted!
+            Your application has been submitted!
           </div>
         )}
       </div>
