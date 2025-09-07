@@ -2,30 +2,31 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Shield, Users, Book, Star, Check, ArrowRight } from 'lucide-react';
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";       // PANTONE 605C
+const TERRAPODS_YELLOW_DARK = "#b38a00";  // Darker for hover
+
 const MembershipPortal = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const benefits = [
     {
-      icon: <Shield className="h-12 w-12" />,
+      icon: <Shield className="h-12 w-12" style={{ color: TERRAPODS_YELLOW }} />,
       title: "Exclusive Access",
       description: "Priority registration for workshops and events"
     },
     {
-      icon: <Users className="h-12 w-12" />,
+      icon: <Users className="h-12 w-12" style={{ color: TERRAPODS_YELLOW }} />,
       title: "Community Network",
       description: "Connect with like-minded individuals and experts"
     },
     {
-      icon: <Book className="h-12 w-12" />,
+      icon: <Book className="h-12 w-12" style={{ color: TERRAPODS_YELLOW }} />,
       title: "Resource Library",
       description: "Access to our digital library and research materials"
     },
     {
-      icon: <Star className="h-12 w-12" />,
+      icon: <Star className="h-12 w-12" style={{ color: TERRAPODS_YELLOW }} />,
       title: "Special Discounts",
       description: "Member pricing on workshops and products"
     }
@@ -71,8 +72,9 @@ const MembershipPortal = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+
       {/* Hero Section */}
-      <section className="relative py-20 bg-yellow-600 text-white">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="relative py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -110,12 +112,10 @@ const MembershipPortal = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center"
               >
-                <div className="flex justify-center mb-4 text-yellow-600">
+                <div className="flex justify-center mb-4">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {benefit.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
               </motion.div>
             ))}
@@ -145,7 +145,7 @@ const MembershipPortal = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className={`rounded-lg overflow-hidden ${
                   tier.highlighted
-                    ? 'bg-yellow-600 text-white transform scale-105 shadow-xl'
+                    ? `bg-[${TERRAPODS_YELLOW}] text-white transform scale-105 shadow-xl`
                     : 'bg-white text-gray-900 shadow-lg'
                 }`}
               >
@@ -155,20 +155,20 @@ const MembershipPortal = () => {
                   <ul className="space-y-4 mb-8">
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-center space-x-3">
-                        <Check className="h-5 w-5 flex-shrink-0 text-yellow-600" />
+                        <Check className="h-5 w-5 flex-shrink-0" style={{ color: TERRAPODS_YELLOW }} />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <button
-                    className={`w-full py-3 rounded-full font-semibold flex items-center justify-center ${
+                    className={`w-full py-3 rounded-full font-semibold flex items-center justify-center transition-colors ${
                       tier.highlighted
-                        ? 'bg-white text-yellow-600 hover:bg-gray-100'
-                        : 'bg-yellow-600 text-white hover:bg-yellow-700'
-                    } transition-colors`}
+                        ? `bg-white text-[${TERRAPODS_YELLOW}] hover:bg-[#f3f3f3]`
+                        : `bg-[${TERRAPODS_YELLOW}] text-white hover:bg-[${TERRAPODS_YELLOW_DARK}]`
+                    }`}
                   >
                     Join Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-5 w-5" style={tier.highlighted ? { color: TERRAPODS_YELLOW } : { color: 'white' }} />
                   </button>
                 </div>
               </motion.div>
@@ -225,7 +225,7 @@ const MembershipPortal = () => {
                   />
                   <div>
                     <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-yellow-600">{testimonial.role}</p>
+                    <p style={{ color: TERRAPODS_YELLOW }}>{testimonial.role}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 italic">"{testimonial.quote}"</p>

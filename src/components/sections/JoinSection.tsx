@@ -9,7 +9,7 @@ const JoinSection = () => {
   });
 
   return (
-    <section ref={ref} className="py-20 bg-yellow-600">
+    <section ref={ref} className="py-20 bg-[#D6A900]"> {/* TerraPods Yellow */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const JoinSection = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white text-yellow-600 px-8 py-3 rounded-full text-lg font-semibold inline-flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="bg-white text-[#D6A900] px-8 py-3 rounded-full text-lg font-semibold inline-flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
               Become a Member
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -37,7 +37,7 @@ const JoinSection = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="border-2 border-white text-white px-8 py-3 rounded-full text-lg font-semibold inline-flex items-center justify-center hover:bg-white hover:text-yellow-600 transition-colors"
+              className="border-2 border-white text-white px-8 py-3 rounded-full text-lg font-semibold inline-flex items-center justify-center hover:bg-white hover:text-[#D6A900] transition-colors"
             >
               Learn More
               <ArrowRight className="ml-2 h-5 w-5" />

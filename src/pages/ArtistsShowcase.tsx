@@ -68,7 +68,7 @@ const ArtistsShowcase = () => {
   return (
     <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
-      <section className="py-20 bg-green-600 text-white text-center">
+      <section className="py-20 bg-[#D6A900] text-white text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const ArtistsShowcase = () => {
               className={`py-3 px-4 rounded-lg text-sm font-medium transition ${
                 selectedCategory === cat
                   ? 'bg-green-600 text-white'
-                  : 'bg-gray-100 text-gray-800 hover:bg-green-100'
+                  : 'bg-gray-100 text-gray-800 hover:bg-[#D6A900]/20'
               }`}
             >
               {cat}
@@ -99,7 +99,7 @@ const ArtistsShowcase = () => {
           ))}
         </div>
         {selectedCategory !== 'All' && (
-          <p className="mt-4 text-green-700 font-medium">
+          <p className="mt-4 text-[#D6A900] font-medium">
             Showing artworks for <strong>{selectedCategory}</strong>
           </p>
         )}
@@ -158,13 +158,13 @@ const ArtistsShowcase = () => {
                     <button className="flex items-center hover:text-blue-500">
                       <MessageCircle className="w-4 h-4 mr-1" /> <span>18</span>
                     </button>
-                    <button className="flex items-center hover:text-green-600">
+                    <button className="flex items-center hover:text-[#D6A900]">
                       <Share2 className="w-4 h-4 mr-1" /> <span>Share</span>
                     </button>
                   </div>
                   <button
                     onClick={() => setActiveArtist(artist)}
-                    className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700"
+                    className="bg-[#D6A900] text-white px-4 py-2 rounded-full hover:opacity-90"
                   >
                     View Gallery
                   </button>
@@ -215,7 +215,7 @@ const ArtistsShowcase = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               />
-              <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              <button className="mt-2 px-4 py-2 bg-[#D6A900] text-white rounded hover:opacity-90">
                 Submit
               </button>
             </div>
@@ -227,7 +227,7 @@ const ArtistsShowcase = () => {
                 href="https://www.ecosouk.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                className="inline-block px-4 py-2 bg-[#D6A900] text-white rounded hover:opacity-90"
               >
                 Purchase on Ecosouk
               </a>

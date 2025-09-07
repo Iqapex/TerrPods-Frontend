@@ -11,7 +11,8 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-yellow-100">
+      <section className="relative py-20 bg-[#FFF5E0]"> 
+        {/* light tint of TerraPods yellow for background */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,10 +45,10 @@ const About = () => {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: <Leaf className="h-8 w-8 text-yellow-600" />, text: "Sustainable Growth" },
-                  { icon: <Heart className="h-8 w-8 text-yellow-600" />, text: "Community Care" },
-                  { icon: <Globe className="h-8 w-8 text-yellow-600" />, text: "Global Impact" },
-                  { icon: <Sun className="h-8 w-8 text-yellow-600" />, text: "Innovation" }
+                  { icon: <Leaf className="h-8 w-8 text-[#D6A537]" />, text: "Sustainable Growth" },
+                  { icon: <Heart className="h-8 w-8 text-[#D6A537]" />, text: "Community Care" },
+                  { icon: <Globe className="h-8 w-8 text-[#D6A537]" />, text: "Global Impact" },
+                  { icon: <Sun className="h-8 w-8 text-[#D6A537]" />, text: "Innovation" }
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     {item.icon}
@@ -108,7 +109,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#D6A537]"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
@@ -119,7 +120,7 @@ const About = () => {
       </section>
 
       {/* FAQs Section */}
-      <section className="py-20 bg-gradient-to-b from-[#fff8e1] to-[#ffffff]">
+      <section className="py-20 bg-gradient-to-b from-[#FFF5E0] to-[#ffffff]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12 animate-fadeIn">
             Frequently Asked Questions
@@ -143,7 +144,7 @@ const About = () => {
                 key={index}
                 className="p-6 bg-white border border-gray-200 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] animate-fadeUp"
               >
-                <h3 className="text-xl font-semibold text-yellow-700">{faq.question}</h3>
+                <h3 className="text-xl font-semibold text-[#D6A537]">{faq.question}</h3>
                 <p className="mt-3 text-gray-700">{faq.answer}</p>
               </div>
             ))}

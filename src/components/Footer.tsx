@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// Define a TypeScript interface for your footer data
 interface FooterLink {
   label: string;
   link: string;
@@ -67,16 +66,18 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#D4A017]">
+              Quick Links
+            </h3>
             <ul className="space-y-2 text-sm">
               {footer.quickLinks?.map((item, idx) => (
                 <li key={idx} className="group relative">
                   <Link
                     to={item.link}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-[#D4A017] transition-colors"
                   >
                     {item.label}
-                    <span className="absolute left-0 -bottom-0.5 w-0 h-0.5 bg-green-500 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute left-0 -bottom-0.5 w-0 h-0.5 bg-gradient-to-r from-[#D4A017] to-[#B38912] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </li>
               ))}
@@ -85,13 +86,18 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#D4A017]">
+              Contact
+            </h3>
             <ul className="space-y-1 text-sm text-gray-400">
               {footer.contactInfo?.address && <li>{footer.contactInfo.address}</li>}
               {footer.contactInfo?.email && (
                 <li>
                   Email:{" "}
-                  <a href={`mailto:${footer.contactInfo.email}`} className="hover:text-white">
+                  <a
+                    href={`mailto:${footer.contactInfo.email}`}
+                    className="hover:text-[#D4A017]"
+                  >
                     {footer.contactInfo.email}
                   </a>
                 </li>
@@ -99,7 +105,10 @@ const Footer = () => {
               {footer.contactInfo?.phone && (
                 <li>
                   Phone:{" "}
-                  <a href={`tel:${footer.contactInfo.phone}`} className="hover:text-white">
+                  <a
+                    href={`tel:${footer.contactInfo.phone}`}
+                    className="hover:text-[#D4A017]"
+                  >
                     {footer.contactInfo.phone}
                   </a>
                 </li>
@@ -109,7 +118,9 @@ const Footer = () => {
 
           {/* Social Links */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#D4A017]">
+              Follow Us
+            </h3>
             <div className="flex gap-4 mt-4 justify-center md:justify-start">
               {footer.socialLinks?.map((item, idx) => (
                 <a
@@ -117,7 +128,7 @@ const Footer = () => {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-[#D4A017] transition-colors"
                 >
                   {item.icon ? (
                     <img src={item.icon} alt={item.platform} className="h-6 w-6" />
@@ -134,7 +145,9 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-gray-800 border-t border-gray-700 text-center py-4">
         <p className="text-gray-400 text-sm">
-          © {new Date().getFullYear()} TerraPods. All rights reserved.
+          © {new Date().getFullYear()}{" "}
+          <span className="text-[#D4A017] font-medium">TerraPods</span>. All
+          rights reserved.
         </p>
       </div>
     </footer>

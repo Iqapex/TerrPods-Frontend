@@ -11,6 +11,10 @@ interface ContactMessage {
   createdAt: string;
 }
 
+// ✅ TerraPods brand yellow (Pantone 605C)
+const TERRAPODS_YELLOW = "#D6A900";
+const TERRAPODS_YELLOW_DARK = "#B88C00";
+
 const ContactMessagesAdmin = () => {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(false);
@@ -42,7 +46,11 @@ const ContactMessagesAdmin = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 mt-16">
-      <h1 className="text-3xl font-extrabold mb-8 text-gray-800 border-b pb-3">
+      {/* ✅ TerraPods Yellow underline */}
+      <h1
+        className="text-3xl font-extrabold mb-8 text-gray-800 border-b-4 pb-3 inline-block"
+        style={{ borderColor: TERRAPODS_YELLOW }}
+      >
         📬 Contact Messages
       </h1>
 
@@ -57,13 +65,14 @@ const ContactMessagesAdmin = () => {
           {messages.map((msg) => (
             <div
               key={msg._id}
-              className="bg-white shadow-md p-6 rounded-xl border hover:shadow-lg transition"
+              className="bg-white shadow-md p-6 rounded-xl transition duration-300 border hover:shadow-lg"
+              style={{ borderColor: TERRAPODS_YELLOW }}
             >
               <div className="flex justify-between items-start">
                 <div className="space-y-2">
                   <p>
                     <strong className="text-gray-700">👤 Name:</strong>{" "}
-                    {msg.name}
+                    <span style={{ color: TERRAPODS_YELLOW }}>{msg.name}</span>
                   </p>
                   <p>
                     <strong className="text-gray-700">📧 Email:</strong>{" "}

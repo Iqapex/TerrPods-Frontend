@@ -10,13 +10,18 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";
+const TERRAPODS_YELLOW_DARK = "#b38a00"; // darker hover
+
 // Like Button
 const LikeButton = () => {
   const [likes, setLikes] = useState<number>(0);
   return (
     <button
       onClick={() => setLikes((prev) => prev + 1)}
-      className="text-sm text-yellow-600 hover:text-yellow-800 mr-3"
+      style={{ color: TERRAPODS_YELLOW }}
+      className="text-sm hover:opacity-80 mr-3"
     >
       👍 {likes}
     </button>
@@ -46,7 +51,8 @@ const CommentBox = () => {
       />
       <button
         onClick={submitComment}
-        className="text-xs px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+        style={{ backgroundColor: TERRAPODS_YELLOW }}
+        className="text-xs px-3 py-1 text-white rounded hover:opacity-90"
       >
         Post
       </button>
@@ -79,7 +85,8 @@ const ShareButton = ({ postUrl }: ShareButtonProps) => {
   return (
     <button
       onClick={handleShare}
-      className="text-sm text-blue-600 hover:text-blue-800"
+      style={{ color: TERRAPODS_YELLOW }}
+      className="text-sm hover:opacity-80"
     >
       🔗 Share
     </button>
@@ -132,7 +139,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-white pt-20 pb-20 px-4 sm:px-6 md:px-10">
       {/* Hero Section */}
-      <section className="relative py-20 bg-yellow-600 text-white">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="relative py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -163,7 +170,10 @@ const Blog = () => {
                 />
               </div>
               <div className="p-8 md:p-12 text-gray-900">
-                <span className="inline-block bg-yellow-100 text-yellow-600 px-4 py-1 rounded-full text-sm font-medium mb-4">
+                <span
+                  style={{ backgroundColor: "#FFF3B0", color: TERRAPODS_YELLOW }}
+                  className="inline-block px-4 py-1 rounded-full text-sm font-medium mb-4"
+                >
                   Featured
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -183,7 +193,10 @@ const Blog = () => {
                     <span>10 min read</span>
                   </div>
                 </div>
-                <button className="inline-flex items-center text-yellow-600 font-semibold hover:text-yellow-700">
+                <button
+                  style={{ color: TERRAPODS_YELLOW }}
+                  className="inline-flex items-center font-semibold hover:opacity-80"
+                >
                   Read More <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
               </div>
@@ -256,8 +269,10 @@ const Blog = () => {
       </section>
 
       {/* Upload Section */}
-      <section className="text-center mb-12 px-4 py-12 bg-gradient-to-b from-white via-yellow-50 to-yellow-100">
-        <h2 className="text-3xl font-bold mb-6 text-yellow-800">Digital Library</h2>
+      <section className="text-center mb-12 px-4 py-12" style={{ background: "linear-gradient(to bottom, #fff, #FFF8E1, #FFE58F)" }}>
+        <h2 className="text-3xl font-bold mb-6" style={{ color: TERRAPODS_YELLOW }}>
+          Digital Library
+        </h2>
         <div className="inline-block mb-6">
           <input
             type="file"
@@ -276,14 +291,17 @@ const Blog = () => {
           </label>
         </div>
         <div>
-          <button className="px-6 py-2 bg-yellow-600 text-white text-sm rounded-lg hover:bg-yellow-700 hover:scale-105 active:scale-100 transition-all duration-200 shadow-lg">
+          <button
+            style={{ backgroundColor: TERRAPODS_YELLOW }}
+            className="px-6 py-2 text-white text-sm rounded-lg hover:opacity-90 transition-all duration-200 shadow-lg"
+          >
             Upload File
           </button>
         </div>
       </section>
 
       {/* Library Items Section */}
-      <section className="px-4 py-12 bg-yellow-50">
+      <section className="px-4 py-12" style={{ backgroundColor: "#FFF8E1" }}>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {libraryItems.map((item: string, idx: number) => (
             <motion.li
@@ -292,15 +310,17 @@ const Blog = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-white border border-yellow-200 p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-between"
+              className="bg-white border p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-between"
+              style={{ borderColor: TERRAPODS_YELLOW }}
             >
               <div className="flex items-center gap-3">
-                <FileText size={24} className="text-yellow-600" />
+                <FileText size={24} style={{ color: TERRAPODS_YELLOW }} />
                 <span className="text-sm font-medium text-gray-800 break-words">{item}</span>
               </div>
               <button
                 onClick={() => alert(`Downloading "${item}"...`)}
-                className="text-yellow-600 text-sm underline hover:text-yellow-800"
+                style={{ color: TERRAPODS_YELLOW }}
+                className="text-sm underline hover:opacity-80"
               >
                 Download
               </button>
@@ -310,15 +330,18 @@ const Blog = () => {
       </section>
 
       {/* Updates / Director’s Corner */}
-      <section className="bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-50 px-4 py-10 md:px-8 md:py-12 rounded-md mb-10 shadow-inner overflow-hidden">
-        <h2 className="text-3xl font-bold mb-4 text-center text-yellow-900">
+      <section
+        className="px-4 py-10 md:px-8 md:py-12 rounded-md mb-10 shadow-inner overflow-hidden"
+        style={{ background: "linear-gradient(to bottom right, #FFF8E1, #FFE58F, #FFF8E1)" }}
+      >
+        <h2 className="text-3xl font-bold mb-4 text-center" style={{ color: TERRAPODS_YELLOW }}>
           Director’s Corner & Community Stories
         </h2>
         <p className="text-gray-700 mb-2 text-center text-lg max-w-3xl mx-auto">
           Stay connected with updates from our leadership and inspiring voices from the TerraPods network.
         </p>
         <div className="text-sm text-gray-500 text-center mb-8">
-          <Calendar size={16} className="inline mr-1 text-yellow-600" />
+          <Calendar size={16} style={{ color: TERRAPODS_YELLOW }} className="inline mr-1" />
           Last update: July 18, 2025
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -338,9 +361,12 @@ const Blog = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out text-center border-t-4 border-yellow-200 hover:border-yellow-400"
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out text-center border-t-4"
+              style={{ borderColor: TERRAPODS_YELLOW }}
             >
-              <h3 className="text-xl font-semibold mb-2 text-yellow-800">{item.title}</h3>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: TERRAPODS_YELLOW }}>
+                {item.title}
+              </h3>
               <p className="text-gray-600 break-words">{item.description}</p>
             </div>
           ))}

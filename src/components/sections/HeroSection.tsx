@@ -34,7 +34,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-full text-lg font-semibold flex items-center mx-auto"
+          className="bg-[#D6A900] hover:bg-[#B88F00] text-white px-8 py-3 rounded-full text-lg font-semibold flex items-center mx-auto"
         >
           Apply Now
           <ArrowRight className="ml-2 h-5 w-5" />

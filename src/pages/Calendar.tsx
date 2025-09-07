@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar as CalendarIcon, Clock, MapPin, Users, Filter } from 'lucide-react';
 
+// TerraPods Yellow
+const TERRAPODS_YELLOW = "#D6A900";       // PANTONE 605C
+const TERRAPODS_YELLOW_DARK = "#b38a00";  // Slightly darker for hover/focus
+
 const Calendar = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const events = [
     {
@@ -40,8 +41,9 @@ const Calendar = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+
       {/* Hero Section */}
-      <section className="relative py-20 bg-yellow-600 text-white">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="relative py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -67,18 +69,21 @@ const Calendar = () => {
                 {['All Events', 'Workshops', 'Exhibitions', 'Talks', 'Community'].map((filter, index) => (
                   <button
                     key={index}
-                    className={`px-4 py-2 rounded-full text-sm font-medium ${
-                      index === 0
-                        ? 'bg-yellow-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-yellow-50 hover:text-yellow-700'
-                    } transition-colors`}
+                    style={{
+                      backgroundColor: index === 0 ? TERRAPODS_YELLOW : '#f3f3f3',
+                      color: index === 0 ? 'white' : '#4B5563'
+                    }}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-${TERRAPODS_YELLOW_DARK} hover:text-white`}
                   >
                     {filter}
                   </button>
                 ))}
               </div>
             </div>
-            <button className="bg-yellow-600 text-white px-6 py-2 rounded-full hover:bg-yellow-700 transition-colors">
+            <button
+              style={{ backgroundColor: TERRAPODS_YELLOW }}
+              className="text-white px-6 py-2 rounded-full hover:bg-[#b38a00] transition-colors"
+            >
               Add to Calendar
             </button>
           </div>
@@ -103,7 +108,9 @@ const Calendar = () => {
                     alt={event.title}
                     className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm">
+                  <div style={{ backgroundColor: TERRAPODS_YELLOW, color: 'white' }}
+                    className="absolute top-4 right-4 px-3 py-1 rounded-full text-sm"
+                  >
                     {event.type}
                   </div>
                 </div>
@@ -113,23 +120,26 @@ const Calendar = () => {
                   </h3>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center space-x-2 text-gray-600">
-                      <CalendarIcon className="h-5 w-5 text-yellow-600" />
+                      <CalendarIcon className="h-5 w-5" style={{ color: TERRAPODS_YELLOW }} />
                       <span>{event.date}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-gray-600">
-                      <Clock className="h-5 w-5 text-yellow-600" />
+                      <Clock className="h-5 w-5" style={{ color: TERRAPODS_YELLOW }} />
                       <span>{event.time}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-gray-600">
-                      <MapPin className="h-5 w-5 text-yellow-600" />
+                      <MapPin className="h-5 w-5" style={{ color: TERRAPODS_YELLOW }} />
                       <span>{event.location}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-gray-600">
-                      <Users className="h-5 w-5 text-yellow-600" />
+                      <Users className="h-5 w-5" style={{ color: TERRAPODS_YELLOW }} />
                       <span>{event.spots}</span>
                     </div>
                   </div>
-                  <button className="w-full bg-yellow-600 text-white px-6 py-2 rounded-full hover:bg-yellow-700 transition-colors">
+                  <button
+                    style={{ backgroundColor: TERRAPODS_YELLOW }}
+                    className="w-full text-white px-6 py-2 rounded-full hover:bg-[#b38a00] transition-colors"
+                  >
                     Register Now
                   </button>
                 </div>
@@ -156,9 +166,7 @@ const Calendar = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="grid grid-cols-7 gap-4 mb-4">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                <div key={day} className="text-center font-semibold text-gray-600">
-                  {day}
-                </div>
+                <div key={day} className="text-center font-semibold text-gray-600">{day}</div>
               ))}
             </div>
             <div className="grid grid-cols-7 gap-4">
@@ -166,10 +174,8 @@ const Calendar = () => {
                 <div
                   key={i}
                   className={`aspect-square flex items-center justify-center rounded-lg ${
-                    i >= 3 && i < 33
-                      ? 'hover:bg-yellow-50 cursor-pointer'
-                      : 'text-gray-300'
-                  } ${i === 15 ? 'bg-yellow-600 text-white' : ''}`}
+                    i >= 3 && i < 33 ? 'cursor-pointer hover:bg-[#E6E055]' : 'text-gray-300'
+                  } ${i === 15 ? 'bg-[#D6A900] text-white' : ''}`}
                 >
                   {i >= 3 && i < 33 ? i - 2 : ''}
                 </div>
@@ -180,29 +186,30 @@ const Calendar = () => {
       </section>
 
       {/* Subscribe Section */}
-      <section className="py-20 bg-yellow-600">
+      <section style={{ backgroundColor: TERRAPODS_YELLOW }} className="py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center text-white"
+            className="text-center"
           >
             <h2 className="text-3xl font-bold mb-6">Stay Updated</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Subscribe to our calendar and never miss an event
             </p>
             <div className="flex justify-center space-x-4">
-              <button className="bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-[#D6A900] px-6 py-3 rounded-full font-semibold hover:bg-[#b38a00] transition-colors">
                 Subscribe to Calendar
               </button>
-              <button className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-yellow-600 transition-colors">
+              <button className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-[#D6A900] transition-colors">
                 Download Schedule
               </button>
             </div>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 };

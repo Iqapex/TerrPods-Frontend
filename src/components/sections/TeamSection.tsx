@@ -12,26 +12,26 @@ const TeamSection = () => {
       name: "Sarah Johnson",
       role: "Founder & Director",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-      bio: "Leading TerraPods' vision of sustainable innovation"
+      bio: "Leading TerraPods' vision of sustainable innovation",
     },
     {
       name: "Michael Chen",
       role: "Head of Agroecology",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-      bio: "Expert in regenerative farming practices"
+      bio: "Expert in regenerative farming practices",
     },
     {
       name: "Elena Rodriguez",
       role: "Art Director",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-      bio: "Curating our artistic vision and residencies"
+      bio: "Curating our artistic vision and residencies",
     },
     {
       name: "David Kumar",
       role: "Biomaterial Researcher",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      bio: "Innovating sustainable material solutions"
-    }
+      bio: "Innovating sustainable material solutions",
+    },
   ];
 
   return (
@@ -71,8 +71,8 @@ const TeamSection = () => {
                   transition={{
                     duration: 10,
                     repeat: Infinity,
-                    repeatType: 'mirror',
-                    ease: "easeInOut"
+                    repeatType: "mirror",
+                    ease: "easeInOut",
                   }}
                 />
               </div>
@@ -81,8 +81,10 @@ const TeamSection = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">
                   {member.name}
                 </h3>
-                {/* ✅ Changed from green to yellow */}
-                <p className="text-yellow-600 font-medium mb-2">{member.role}</p>
+                {/* ✅ TerraPods Yellow applied */}
+                <p className="text-[#D6A900] font-medium mb-2">
+                  {member.role}
+                </p>
                 <p className="text-gray-600 text-sm">{member.bio}</p>
               </div>
             </motion.div>

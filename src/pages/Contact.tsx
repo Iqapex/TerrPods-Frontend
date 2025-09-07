@@ -38,10 +38,10 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 bg-green-600 p-6 rounded-lg"
+          className="text-center mb-16 bg-[#FFF264] p-6 rounded-lg"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Sow a Connection</h1>
-          <p className="text-xl text-white max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Sow a Connection</h1>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
             We'd love to hear from you. Reach out to us with any questions, ideas, or opportunities for collaboration.
           </p>
         </motion.div>
@@ -66,7 +66,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-[#FFF264] focus:border-[#FFF264]"
                 />
               </div>
               <div>
@@ -79,7 +79,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-[#FFF264] focus:border-[#FFF264]"
                 />
               </div>
               <div>
@@ -92,7 +92,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-[#FFF264] focus:border-[#FFF264]"
                 />
               </div>
               <div>
@@ -105,12 +105,12 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-[#FFF264] focus:border-[#FFF264]"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors"
+                className="w-full bg-[#FFF264] text-gray-900 font-semibold px-6 py-3 rounded-md hover:bg-[#FFE600] transition-colors"
               >
                 Send Message
               </button>
@@ -128,21 +128,21 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h2>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <MapPin className="h-6 w-6 text-green-600 mt-1" />
+                  <MapPin className="h-6 w-6 text-[#FFF264] mt-1" />
                   <div>
                     <h3 className="font-medium text-gray-900">Location</h3>
                     <p className="text-gray-600">Baskinta, Lebanon</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <Mail className="h-6 w-6 text-green-600 mt-1" />
+                  <Mail className="h-6 w-6 text-[#FFF264] mt-1" />
                   <div>
                     <h3 className="font-medium text-gray-900">Email</h3>
                     <p className="text-gray-600">contact@terrapods.org</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <Phone className="h-6 w-6 text-green-600 mt-1" />
+                  <Phone className="h-6 w-6 text-[#FFF264] mt-1" />
                   <div>
                     <h3 className="font-medium text-gray-900">Phone</h3>
                     <p className="text-gray-600">+961 1 234 567</p>
@@ -162,23 +162,23 @@ const Contact = () => {
 
         {/* FAQ Section */}
         <div className="max-w-5xl mx-auto my-16 px-4 sm:px-6 lg:px-8 ">
-          <div className="bg-gradient-to-br from-green-100 to-green-50 p-8 rounded-xl shadow-2xl">
-            <h2 className="text-3xl font-bold text-green-900 mb-8 text-center">Frequently Asked Questions</h2>
+          <div className="bg-gradient-to-br from-[#FFF9C2] to-green-50 p-8 rounded-xl shadow-2xl">
+            <h2 className="text-3xl font-bold text-yellow-900 mb-8 text-center">Frequently Asked Questions</h2>
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-green-50 transition duration-300">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-[#FFFBEA] transition duration-300">
                 <h3 className="text-xl font-semibold text-green-800">How can I get involved?</h3>
                 <p className="text-gray-700 mt-2">
                   You can reach out via the contact form, or check out our volunteer and donation sections.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-green-50 transition duration-300">
-                <h3 className="text-xl font-semibold text-green-800">Where are you based?</h3>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-[#FFFBEA] transition duration-300">
+                <h3 className="text-xl font-semibold text-[#9A8700]">Where are you based?</h3>
                 <p className="text-gray-700 mt-2">
                   We’re located in Baskinta, Lebanon, but we work with partners globally.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-green-50 transition duration-300">
-                <h3 className="text-xl font-semibold text-green-800">How can I make a donation?</h3>
+              <div className="bg-white p-6 rounded-lg shadow-md hover:bg-[#FFFBEA] transition duration-300">
+                <h3 className="text-xl font-semibold text-[#9A8700]">How can I make a donation?</h3>
                 <p className="text-gray-700 mt-2">
                   You can visit the donation section of our website and choose your preferred donation method.
                 </p>
@@ -188,7 +188,7 @@ const Contact = () => {
         </div>
 
         {/* Community Guidelines */}
-        <div className="bg-green-50 hover:bg-green-100 transition-all duration-300 transform hover:scale-[1.02] p-6 sm:p-8 rounded-xl shadow-md hover:shadow-lg mt-12">
+        <div className="bg-[#FFFBEA] hover:bg-[#FFF9C2] transition-all duration-300 transform hover:scale-[1.02] p-6 sm:p-8 rounded-xl shadow-md hover:shadow-lg mt-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-green-900 mb-6 text-center">
             Community Guidelines
           </h2>
