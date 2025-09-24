@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Leaf } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import api from "../api"; // Adjust path based on your folder structure
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/menu`);
+        const res = await api.get("/menu"); // ✅ Use api instance
         setNavItems(res.data);
       } catch (error) {
         console.error("Error fetching menu:", error);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { API_BASE_URL } from "../config";
+import api from "../api"; // correct relative path
 
 interface FooterLink {
   label: string;
@@ -40,7 +39,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchFooter = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/footer`);
+        const res = await api.get("/footer");
         if (res.data) {
           setFooter({
             footerLogo: res.data.footerLogo || "",

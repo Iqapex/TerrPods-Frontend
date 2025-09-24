@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import api from "../../api"; // correct path to api.ts
 
 interface SubMenu {
   _id?: string;
@@ -24,7 +22,7 @@ const MenuManager = () => {
 
   const fetchMenus = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/menu`);
+      const res = await api.get("/menu");
       setMenus(res.data);
     } catch (err) {
       console.error("Error fetching menus:", err);
@@ -38,7 +36,7 @@ const MenuManager = () => {
   const handleAdd = async () => {
     setLoading(true);
     try {
-      await axios.post(`${API_BASE_URL}/menu`, form);
+      await api.post("/menu", form);
       setForm({ name: "", path: "", subMenu: [] });
       fetchMenus();
     } catch (err) {
@@ -50,7 +48,7 @@ const MenuManager = () => {
   const handleDelete = async (id: string) => {
     setLoading(true);
     try {
-      await axios.delete(`${API_BASE_URL}/menu/${id}`);
+      await api.delete(`/menu/${id}`);
       fetchMenus();
     } catch (err) {
       console.error("Error deleting menu:", err);
@@ -61,7 +59,7 @@ const MenuManager = () => {
   const handleAddSubmenu = async (menuId: string) => {
     const submenuForm = submenuForms[menuId] || { name: "", path: "" };
     try {
-      await axios.post(`${API_BASE_URL}/menu/${menuId}/submenu`, submenuForm);
+      await api.post(`/menu/${menuId}/submenu`, submenuForm);
       setSubmenuForms(prev => ({ ...prev, [menuId]: { name: "", path: "" } }));
       fetchMenus();
     } catch (err) {
@@ -71,7 +69,7 @@ const MenuManager = () => {
 
   const handleDeleteSubmenu = async (menuId: string, subId: string) => {
     try {
-      await axios.delete(`${API_BASE_URL}/menu/${menuId}/submenu/${subId}`);
+      await api.delete(`/menu/${menuId}/submenu/${subId}`);
       fetchMenus();
     } catch (err) {
       console.error("Error deleting submenu:", err);

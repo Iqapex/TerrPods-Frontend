@@ -1,7 +1,5 @@
 import { useState, useEffect, ChangeEvent } from "react";
-import axios from "axios";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import api from "../../api"; // fixed import
 
 interface QuickLink {
   label: string;
@@ -41,7 +39,7 @@ const FooterManager = () => {
 
   const fetchFooter = async () => {
     try {
-      const res = await axios.get<FooterData>(`${API_BASE_URL}/footer`);
+      const res = await api.get<FooterData>("/footer");
       if (res.data) {
         setFooter({
           footerLogo: res.data.footerLogo || "",
@@ -99,7 +97,7 @@ const FooterManager = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      await axios.post(`${API_BASE_URL}/footer`, footer);
+      await api.post("/footer", footer);
       alert("✅ Footer updated successfully!");
     } catch (error) {
       console.error(error);
