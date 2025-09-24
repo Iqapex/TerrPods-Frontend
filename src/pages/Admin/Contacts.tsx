@@ -18,7 +18,7 @@ const AdminContacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/contacts")
+    fetch("https://terrapods-backend.onrender.com/api/admin/contacts")
       .then((res) => res.json())
       .then((data) => setContacts(data));
   }, []);

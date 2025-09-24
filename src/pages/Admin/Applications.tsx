@@ -22,7 +22,7 @@ const Applications = () => {
   const [applications, setApplications] = useState<Application[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/applications")
+    fetch("https://terrapods-backend.onrender.com/api/admin/applications")
       .then((res) => res.json())
       .then((data) => setApplications(data));
   }, []);

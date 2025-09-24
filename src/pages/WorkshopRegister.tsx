@@ -10,24 +10,35 @@ const WorkshopRegister = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "https://terrapods-backend.onrender.com";
+  const REGISTER_URL = `${API_BASE_URL}/api/workshops/register`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/workshops/register", {
+      const response = await axios.post(REGISTER_URL, {
         name,
         email,
         workshop: workshopTitle,
       });
 
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         toast.success("🎉 Successfully registered for the workshop!", {
           position: "top-right",
           autoClose: 3000,
         });
         setName("");
         setEmail("");
+      } else {
+        toast.error("Registration failed. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
     } catch (error: any) {
       toast.error(
@@ -37,6 +48,8 @@ const WorkshopRegister = () => {
           autoClose: 3000,
         }
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,8 +87,9 @@ const WorkshopRegister = () => {
             <button
               type="submit"
               className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+              disabled={loading}
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
         </div>

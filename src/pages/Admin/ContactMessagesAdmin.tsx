@@ -22,7 +22,7 @@ const ContactMessagesAdmin = () => {
   const fetchMessages = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/contact");
+      const res = await axios.get("https://terrapods-backend.onrender.com/api/contact");
       setMessages(res.data);
     } catch (err) {
       console.error("Error fetching messages", err);
@@ -33,7 +33,7 @@ const ContactMessagesAdmin = () => {
   const deleteMessage = async (id: string) => {
     if (!window.confirm("Are you sure you want to delete this message?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/contact/${id}`);
+      await axios.delete(`https://terrapods-backend.onrender.com/api/contact/${id}`);
       setMessages((prev) => prev.filter((msg) => msg._id !== id));
     } catch (err) {
       console.error("Error deleting message", err);

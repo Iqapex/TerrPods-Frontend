@@ -80,6 +80,10 @@ const ProgramApplication = () => {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>({});
 
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "https://terrapods-backend.onrender.com";
+  const APPLICATION_API_URL = `${API_BASE_URL}/api/applications`;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentStep]);
@@ -94,7 +98,6 @@ const ProgramApplication = () => {
 
   const isFinalStep = currentStep === program.steps.length - 1;
 
-  // ✅ Fixed typing for "checked"
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -110,7 +113,7 @@ const ProgramApplication = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("/api/applications", {
+      const response = await fetch(APPLICATION_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -255,7 +258,6 @@ const ProgramApplication = () => {
                 value={formData[program.steps[currentStep]] || ""}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring focus:ring-yellow-500"
-                style={{ borderColor: "#d1d5db" }} // ✅ removed invalid "focusBorderColor"
                 placeholder={`Enter ${program.steps[currentStep]}...`}
               />
             </>

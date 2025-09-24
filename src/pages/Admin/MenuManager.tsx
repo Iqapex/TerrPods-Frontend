@@ -1,6 +1,6 @@
-// src/pages/Admin/MenuManager.tsx
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
 interface SubMenu {
   _id?: string;
@@ -24,7 +24,7 @@ const MenuManager = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchMenus = async () => {
-    const res = await axios.get("http://localhost:5000/api/menu");
+    const res = await axios.get(`${API_BASE_URL}/menu`);
     setMenus(res.data);
   };
 
@@ -34,7 +34,7 @@ const MenuManager = () => {
 
   const handleAdd = async () => {
     setLoading(true);
-    await axios.post("http://localhost:5000/api/menu", form);
+    await axios.post(`${API_BASE_URL}/menu`, form);
     setForm({ name: "", path: "", subMenu: [] });
     fetchMenus();
     setLoading(false);
@@ -42,7 +42,7 @@ const MenuManager = () => {
 
   const handleDelete = async (id: string) => {
     setLoading(true);
-    await axios.delete(`http://localhost:5000/api/menu/${id}`);
+    await axios.delete(`${API_BASE_URL}/menu/${id}`);
     fetchMenus();
     setLoading(false);
   };
@@ -50,7 +50,7 @@ const MenuManager = () => {
   const handleAddSubmenu = async (menuId: string) => {
     const submenuForm = submenuForms[menuId] || { name: "", path: "" };
     await axios.post(
-      `http://localhost:5000/api/menu/${menuId}/submenu`,
+      `${API_BASE_URL}/menu/${menuId}/submenu`,
       submenuForm
     );
     setSubmenuForms((prev) => ({
@@ -62,7 +62,7 @@ const MenuManager = () => {
 
   const handleDeleteSubmenu = async (menuId: string, subId: string) => {
     await axios.delete(
-      `http://localhost:5000/api/menu/${menuId}/submenu/${subId}`
+      `${API_BASE_URL}/menu/${menuId}/submenu/${subId}`
     );
     fetchMenus();
   };
@@ -73,7 +73,6 @@ const MenuManager = () => {
         🧭 Menu Manager
       </h1>
 
-      {/* Add Menu Form */}
       <div className="mb-6 sm:mb-8 bg-white p-4 sm:p-6 shadow-lg rounded-xl border-l-4 border-[#C5A900] space-y-3">
         <h2 className="text-lg font-semibold text-gray-700 mb-2">
           ➕ Add New Menu
@@ -101,7 +100,6 @@ const MenuManager = () => {
         </button>
       </div>
 
-      {/* Menu List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {menus.map((menu, menuIndex) => (
           <div
@@ -118,7 +116,6 @@ const MenuManager = () => {
               </button>
             </div>
 
-            {/* Submenus */}
             {menu.subMenu?.length > 0 && (
               <ul className="ml-2 sm:ml-4 mb-3 sm:mb-4 space-y-1 sm:space-y-2 overflow-x-auto">
                 {menu.subMenu.map((sub, subIndex) => (
@@ -147,7 +144,6 @@ const MenuManager = () => {
               </ul>
             )}
 
-            {/* Add Submenu Form */}
             <div className="mt-auto flex flex-col sm:flex-row gap-2 sm:gap-2.5">
               <input
                 type="text"

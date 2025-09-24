@@ -12,7 +12,7 @@ const WorkshopRegistrationsAdmin = () => {
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/workshops/registrations");
+        const res = await axios.get("https://terrapods-backend.onrender.com/api/workshops/registrations");
         setRegistrations(res.data);
       } catch (error) {
         console.error("Error fetching registrations:", error);

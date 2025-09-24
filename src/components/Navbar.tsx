@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Leaf } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +12,10 @@ const Navbar = () => {
   const [navItems, setNavItems] = useState<any[]>([]);
   const location = useLocation();
 
-  // Fetch menu from backend
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/menu");
+        const res = await axios.get(`${API_BASE_URL}/menu`);
         setNavItems(res.data);
       } catch (error) {
         console.error("Error fetching menu:", error);
@@ -24,7 +24,6 @@ const Navbar = () => {
     fetchMenu();
   }, []);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -47,7 +46,6 @@ const Navbar = () => {
     >
       <div className="max-w-screen mx-auto md:px-24 sm:px-6">
         <div className="flex justify-between h-20 items-center">
-          {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }}>
             <Link to="/" className="flex items-center space-x-2 group">
               <div className="p-2 rounded-full bg-gradient-to-br from-[#D4A017] to-[#B38912] shadow-md">
@@ -59,7 +57,6 @@ const Navbar = () => {
             </Link>
           </motion.div>
 
-          {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item, i) => (
               <div key={item._id || `nav-${i}`} className="relative group">
@@ -113,7 +110,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-md hover:bg-[#FFF9E5] transition-colors"
@@ -127,7 +123,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

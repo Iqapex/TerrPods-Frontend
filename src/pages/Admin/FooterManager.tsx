@@ -35,33 +35,29 @@ const FooterManager = () => {
   const [footer, setFooter] = useState<FooterData>({
     footerLogo: "",
     description: "",
-    quickLinks: [{ label: "", link: "" }],
+    quickLinks: [],
     contactInfo: { address: "", email: "", phone: "" },
-    socialLinks: [{ platform: "", url: "", icon: "" }],
+    socialLinks: [],
   });
 
   const [loading, setLoading] = useState(false);
-  const API_URL = "http://localhost:5000/api/footer";
+  const API_URL = "https://terrapods-backend.onrender.com/api/footer";
 
-  // Fetch footer data
   const fetchFooter = async () => {
     try {
       const res = await axios.get<FooterData>(API_URL);
+
       if (res.data) {
         setFooter({
           footerLogo: res.data.footerLogo || "",
           description: res.data.description || "",
-          quickLinks: res.data.quickLinks?.length
-            ? res.data.quickLinks
-            : [{ label: "", link: "" }],
-          contactInfo: res.data.contactInfo || {
-            address: "",
-            email: "",
-            phone: "",
+          quickLinks: res.data.quickLinks || [],
+          contactInfo: {
+            address: res.data.contactInfo?.address || "",
+            email: res.data.contactInfo?.email || "",
+            phone: res.data.contactInfo?.phone || "",
           },
-          socialLinks: res.data.socialLinks?.length
-            ? res.data.socialLinks
-            : [{ platform: "", url: "", icon: "" }],
+          socialLinks: res.data.socialLinks || [],
         });
       }
     } catch (error) {
@@ -73,12 +69,10 @@ const FooterManager = () => {
     fetchFooter();
   }, []);
 
-  // Handle simple field changes
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFooter({ ...footer, [e.target.name]: e.target.value });
   };
 
-  // Handle contact info changes
   const handleContactChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFooter({
       ...footer,
@@ -89,41 +83,26 @@ const FooterManager = () => {
     });
   };
 
-  // Handle quick link changes
   const handleQuickLinkChange = (index: number, field: QuickLinkKey, value: string) => {
     const updated = [...footer.quickLinks];
     updated[index] = { ...updated[index], [field]: value };
     setFooter({ ...footer, quickLinks: updated });
   };
 
-  // Handle social link changes
-  const handleSocialLinkChange = (
-    index: number,
-    field: SocialLinkKey,
-    value: string
-  ) => {
+  const handleSocialLinkChange = (index: number, field: SocialLinkKey, value: string) => {
     const updated = [...footer.socialLinks];
     updated[index] = { ...updated[index], [field]: value };
     setFooter({ ...footer, socialLinks: updated });
   };
 
-  // Add quick link
   const addQuickLink = () => {
-    setFooter({
-      ...footer,
-      quickLinks: [...footer.quickLinks, { label: "", link: "" }],
-    });
+    setFooter({ ...footer, quickLinks: [...footer.quickLinks, { label: "", link: "" }] });
   };
 
-  // Add social link
   const addSocialLink = () => {
-    setFooter({
-      ...footer,
-      socialLinks: [...footer.socialLinks, { platform: "", url: "", icon: "" }],
-    });
+    setFooter({ ...footer, socialLinks: [...footer.socialLinks, { platform: "", url: "", icon: "" }] });
   };
 
-  // Save footer data
   const handleSave = async () => {
     setLoading(true);
     try {
@@ -131,6 +110,7 @@ const FooterManager = () => {
       alert("✅ Footer updated successfully!");
     } catch (error) {
       console.error("Error updating footer:", error);
+      alert("❌ Error saving footer.");
     }
     setLoading(false);
   };
@@ -141,9 +121,8 @@ const FooterManager = () => {
         📑 Footer Manager
       </h1>
 
-      {/* Footer Logo */}
-      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">Footer Logo</h2>
+      {/* Logo */}
+      <div className="mb-8">
         <input
           type="text"
           placeholder="Footer Logo URL"
@@ -152,121 +131,100 @@ const FooterManager = () => {
           onChange={handleChange}
           className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900] mb-4"
         />
-        {footer.footerLogo && (
-          <div className="flex items-center gap-3">
-            <img
-              src={footer.footerLogo}
-              alt="Footer Logo"
-              className="h-16 border rounded-md shadow-sm"
-            />
-            <span className="text-sm text-gray-500">Preview</span>
-          </div>
-        )}
       </div>
 
       {/* Description */}
-      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">Description</h2>
+      <div className="mb-8">
         <textarea
           placeholder="Footer Description"
           name="description"
           value={footer.description}
           onChange={handleChange}
           className="border p-3 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
-          rows={3}
         />
       </div>
 
       {/* Quick Links */}
-      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">Quick Links</h2>
-        {footer.quickLinks.map((link, idx) => (
+      <div className="mb-8">
+        {(footer.quickLinks || []).map((link, idx) => (
           <div key={idx} className="flex gap-2 mb-2">
             <input
               type="text"
               placeholder="Label"
-              value={link.label}
+              value={link.label || ""}
               onChange={(e) => handleQuickLinkChange(idx, "label", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+              className="border p-2 flex-1 rounded-md"
             />
             <input
               type="text"
               placeholder="Link"
-              value={link.link}
+              value={link.link || ""}
               onChange={(e) => handleQuickLinkChange(idx, "link", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+              className="border p-2 flex-1 rounded-md"
             />
           </div>
         ))}
-        <button
-          onClick={addQuickLink}
-          className="bg-[#C5A900] text-white px-4 py-2 rounded-lg shadow hover:bg-[#b19a00] transition"
-        >
+        <button onClick={addQuickLink} className="bg-[#C5A900] text-white px-4 py-2 rounded">
           ➕ Add Quick Link
         </button>
       </div>
 
       {/* Contact Info */}
-      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">Contact Info</h2>
+      <div className="mb-8">
         <input
           type="text"
           placeholder="Address"
           name="address"
-          value={footer.contactInfo.address}
+          value={footer.contactInfo.address || ""}
           onChange={handleContactChange}
-          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+          className="border p-2 w-full mb-3 rounded-md"
         />
         <input
           type="email"
           placeholder="Email"
           name="email"
-          value={footer.contactInfo.email}
+          value={footer.contactInfo.email || ""}
           onChange={handleContactChange}
-          className="border p-2 w-full mb-3 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+          className="border p-2 w-full mb-3 rounded-md"
         />
         <input
           type="text"
           placeholder="Phone"
           name="phone"
-          value={footer.contactInfo.phone}
+          value={footer.contactInfo.phone || ""}
           onChange={handleContactChange}
-          className="border p-2 w-full rounded-md focus:ring-2 focus:ring-[#C5A900]"
+          className="border p-2 w-full rounded-md"
         />
       </div>
 
       {/* Social Links */}
-      <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">Social Links</h2>
-        {footer.socialLinks.map((link, idx) => (
+      <div className="mb-8">
+        {(footer.socialLinks || []).map((link, idx) => (
           <div key={idx} className="flex gap-2 mb-2">
             <input
               type="text"
               placeholder="Platform"
-              value={link.platform}
+              value={link.platform || ""}
               onChange={(e) => handleSocialLinkChange(idx, "platform", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+              className="border p-2 flex-1 rounded-md"
             />
             <input
               type="text"
               placeholder="URL"
-              value={link.url}
+              value={link.url || ""}
               onChange={(e) => handleSocialLinkChange(idx, "url", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+              className="border p-2 flex-1 rounded-md"
             />
             <input
               type="text"
               placeholder="Icon URL"
-              value={link.icon}
+              value={link.icon || ""}
               onChange={(e) => handleSocialLinkChange(idx, "icon", e.target.value)}
-              className="border p-2 flex-1 rounded-md focus:ring-2 focus:ring-[#C5A900]"
+              className="border p-2 flex-1 rounded-md"
             />
           </div>
         ))}
-        <button
-          onClick={addSocialLink}
-          className="bg-[#C5A900] text-white px-4 py-2 rounded-lg shadow hover:bg-[#b19a00] transition"
-        >
+        <button onClick={addSocialLink} className="bg-[#C5A900] text-white px-4 py-2 rounded">
           ➕ Add Social Link
         </button>
       </div>
@@ -276,7 +234,7 @@ const FooterManager = () => {
         <button
           onClick={handleSave}
           disabled={loading}
-          className="bg-[#C5A900] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#b19a00] transition disabled:opacity-50"
+          className="bg-[#C5A900] text-white px-6 py-3 rounded-lg"
         >
           {loading ? "💾 Saving..." : "✅ Save Changes"}
         </button>

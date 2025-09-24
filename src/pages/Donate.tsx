@@ -16,6 +16,11 @@ const Donate = () => {
     message: ''
   });
 
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "https://terrapods-backend.onrender.com";
+  const CONTACT_API_URL = `${API_BASE_URL}/api/contact`;
+  const DONATION_API_URL = `${API_BASE_URL}/api/donations/checkout`;
+
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const handleFormChange = (
@@ -27,7 +32,7 @@ const Donate = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/contact`, {
+      await axios.post(CONTACT_API_URL, {
         name: form.name,
         email: form.email,
         message: form.message
@@ -35,7 +40,7 @@ const Donate = () => {
       toast.success('Message sent successfully!');
       setForm({ ...form, message: '' });
     } catch (err) {
-      console.error(err);
+      console.error("Contact form error:", err);
       toast.error('Failed to send message. Please try again.');
     }
   };
@@ -43,7 +48,7 @@ const Donate = () => {
   const handleDonate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/donations/checkout', {
+      const response = await fetch(DONATION_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -63,7 +68,7 @@ const Donate = () => {
         toast.error('No URL received from Stripe.');
       }
     } catch (error) {
-      console.error('Fetch failed:', error);
+      console.error('Donation request failed:', error);
       toast.error('Failed to connect to backend. Please make sure the server is running.');
     }
   };
