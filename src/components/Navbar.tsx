@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Leaf } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import { API_BASE_URL } from "../config";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -133,10 +134,7 @@ const Navbar = () => {
           >
             <ul className="flex flex-col">
               {navItems.map((item, i) => (
-                <li
-                  key={item._id || `mobile-${i}`}
-                  className="border-b border-gray-100"
-                >
+                <li key={item._id || `mobile-${i}`} className="border-b border-gray-100">
                   {item.subMenu && item.subMenu.length > 0 ? (
                     <>
                       <button
