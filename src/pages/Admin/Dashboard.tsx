@@ -58,25 +58,7 @@ const Dashboard = () => {
           </p>
         </Link>
 
-        <Link
-          to="/admin/menu"
-          className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border hover:border-indigo-500"
-        >
-          <h2 className="text-lg font-semibold text-indigo-600">🧭 Manage Navbar Menu</h2>
-          <p className="text-sm text-gray-600 mt-2">
-            Update navigation links and submenus.
-          </p>
-        </Link>
-
-        <Link
-          to="/admin/footer"
-          className="p-6 bg-white shadow-lg rounded-xl hover:shadow-2xl transition duration-300 border hover:border-pink-500"
-        >
-          <h2 className="text-lg font-semibold text-pink-600">⚓ Manage Footer</h2>
-          <p className="text-sm text-gray-600 mt-2">
-            Edit footer links, texts, and quick access info.
-          </p>
-        </Link>
+        
 
         {/* ✅ TerraPods Yellow card */}
         <Link
