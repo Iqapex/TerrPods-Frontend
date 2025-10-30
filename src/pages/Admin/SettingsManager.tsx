@@ -1,6 +1,10 @@
-// src/pages/Admin/SettingsManager.tsx
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+// Use environment variable for API URL
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = `${API_BASE_URL}/api/settings`;
 
 const SettingsManager = () => {
   const [settings, setSettings] = useState({
@@ -13,7 +17,7 @@ const SettingsManager = () => {
 
   const fetchSettings = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/settings");
+      const res = await axios.get(API_URL);
       if (res.data) {
         setSettings({
           navbarLogo: res.data.navbarLogo || "",
@@ -24,6 +28,7 @@ const SettingsManager = () => {
       }
     } catch (err) {
       console.error("Error fetching settings:", err);
+      alert("❌ Failed to fetch settings.");
     }
   };
 
@@ -38,10 +43,11 @@ const SettingsManager = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/settings", settings);
+      await axios.post(API_URL, settings);
       alert("✅ Settings updated successfully!");
     } catch (err) {
       console.error("Error updating settings:", err);
+      alert("❌ Error saving settings.");
     }
     setLoading(false);
   };
@@ -102,7 +108,6 @@ const SettingsManager = () => {
       {/* Colors Section */}
       <div className="bg-white shadow-lg rounded-xl border-l-4 border-[#C5A900] p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Theme Colors</h2>
-
         <div className="flex items-center gap-8">
           <div>
             <label className="block mb-2 font-medium text-gray-600">Primary Color</label>

@@ -16,7 +16,7 @@ const Donations = () => {
   const [donations, setDonations] = useState<Donation[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/donations")
+    fetch("https://terrapods-backend.onrender.com/api/admin/donations")
       .then((res) => res.json())
       .then((data) => setDonations(data));
   }, []);

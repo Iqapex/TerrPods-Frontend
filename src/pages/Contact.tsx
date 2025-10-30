@@ -21,7 +21,7 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/contact', formData);
+      const res = await axios.post('https://terrapods-backend.onrender.com/api/contact', formData);
       if (res.status === 201) {
         toast.success('📨 Message sent successfully!');
         setFormData({ name: '', email: '', subject: '', message: '' });

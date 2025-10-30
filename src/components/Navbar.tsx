@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+<<<<<<< HEAD
 import logo from "../img/TerraPods.png";
+=======
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +13,10 @@ const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
 
+<<<<<<< HEAD
+=======
+  // 🔹 static menu
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
   const navItems = [
     {
       name: "About",
@@ -24,6 +31,7 @@ const Navbar = () => {
       name: "Events",
       subMenu: [
         { name: "Calendar", path: "/events/calendar" },
+<<<<<<< HEAD
         {
           name: "Call for Applications: Arts Residency",
           path: "/events/applications/arts-residency",
@@ -41,6 +49,9 @@ const Navbar = () => {
         { name: "Login", path: "/membership/login" },
         { name: "Sign Up", path: "/membership/signup" },
         { name: "FAQ", path: "/membership/faq" },
+=======
+        { name: "Membership & FAQs", path: "/events/membership-faqs" },
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
       ],
     },
 
@@ -51,8 +62,13 @@ const Navbar = () => {
         { name: "Blog", path: "/media/blog" },
       ],
     },
+<<<<<<< HEAD
     { name: "Gallery", path: "/art-gallery" },
     { name: "Donate", path: "/donate" },
+=======
+    { name: "Donate", path: "/donate" },
+    { name: "Login", path: "/login" },
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
   ];
 
   useEffect(() => {
@@ -105,7 +121,11 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item, i) => (
+<<<<<<< HEAD
               <div key={i} className="relative">
+=======
+              <div key={i} className="relative group">
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
                 {item.subMenu ? (
                   <>
                     <button
@@ -115,14 +135,35 @@ const Navbar = () => {
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
                     </button>
+<<<<<<< HEAD
                     {openDropdown === item.name && renderSubMenu(item.subMenu)}
+=======
+                    <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-200">
+                      <ul className="py-2">
+                        {item.subMenu.map((sub, j) => (
+                          <li key={j}>
+                            <Link
+                              to={sub.path}
+                              className="block px-4 py-2 text-gray-600 hover:bg-[#FFF9E5] hover:text-[#D4A017] transition-colors"
+                            >
+                              {sub.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
                   </>
                 ) : (
                   <Link
                     to={item.path || "#"}
                     className={`px-3 py-2 font-medium ${location.pathname === item.path
                         ? "text-[#D4A017]"
+<<<<<<< HEAD
                         : "text-gray-600 hover:text-[#D4A017]"
+=======
+                        : "text-gray-600 hover:text-[#D4A017] transition-colors"
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
                       }`}
                   >
                     {item.name}
@@ -166,9 +207,13 @@ const Navbar = () => {
                       >
                         {item.name}
                         <ChevronDown
+<<<<<<< HEAD
                           className={`h-4 w-4 transform transition-transform ${openDropdown === item.name
                               ? "rotate-180 text-[#D4A017]"
                               : ""
+=======
+                          className={`h-4 w-4 transform transition-transform ${openDropdown === item.name ? "rotate-180 text-[#D4A017]" : ""
+>>>>>>> c2b43d6544c00406f27f14fb1f45bee0ec55b712
                             }`}
                         />
                       </button>
