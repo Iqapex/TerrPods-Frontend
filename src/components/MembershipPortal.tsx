@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { useAdmin } from "../context/AdminContext";
 
 const MembershipPortal: React.FC = () => {
@@ -13,12 +11,6 @@ const MembershipPortal: React.FC = () => {
     tiers,
     showPrivateSections,
   } = useAdmin();
-
-  // 👇 Define the intersection observer hook
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
 
   return (
     <div className="font-sans text-gray-800">
@@ -69,16 +61,13 @@ const MembershipPortal: React.FC = () => {
       </section>
 
       {/* ================= MEMBERSHIP TIERS ================= */}
-      <section className="bg-gray-50 py-16 text-center" ref={ref}>
+      <section className="bg-gray-50 py-16 text-center">
         <h2 className="text-3xl font-bold mb-10">Membership Tiers</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 md:px-16">
           {tiers?.length ? (
             tiers.map((tier, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
                 className="border rounded-lg shadow-md hover:shadow-lg transition-all p-8 bg-white"
               >
                 {tier.image && (
@@ -89,28 +78,18 @@ const MembershipPortal: React.FC = () => {
                   />
                 )}
                 <h3 className="text-2xl font-semibold mb-2">{tier.name}</h3>
-                <p className="text-lg font-bold text-gray-600 mb-2">
+                <p className="text-lg font-bold text-gray-600 mb-4">
                   {tier.price}
                 </p>
-                {tier.duration && (
-                  <p className="text-sm text-gray-600 mb-2">
-                    Duration: {tier.duration}
-                  </p>
-                )}
-                {tier.paymentOptions?.length > 0 && (
-                  <p className="text-sm text-gray-600 mb-4">
-                    Payment Options: {tier.paymentOptions.join(" or ")}
-                  </p>
-                )}
                 <ul className="text-sm text-gray-700 mb-6 text-left">
-                  {tier.features?.map((f, j) => (
+                  {tier.features.map((f, j) => (
                     <li key={j}>• {f}</li>
                   ))}
                 </ul>
                 <button className="bg-yellow-500 text-white px-5 py-2 rounded-md hover:bg-yellow-600">
                   Join Now
                 </button>
-              </motion.div>
+              </div>
             ))
           ) : (
             <p className="col-span-full text-gray-500">
@@ -120,13 +99,15 @@ const MembershipPortal: React.FC = () => {
         </div>
       </section>
 
-      
-
       {/* ================= PRIVATE SECTION ================= */}
       {showPrivateSections && (
         <section className="py-16 text-center bg-gray-200">
-          <h2 className="text-2xl font-semibold mb-2">Private Members Area</h2>
-          <p className="text-gray-700">Only visible to logged-in members.</p>
+          <h2 className="text-2xl font-semibold mb-2">
+            Private Members Area
+          </h2>
+          <p className="text-gray-700">
+            Only visible to logged-in members.
+          </p>
         </section>
       )}
     </div>

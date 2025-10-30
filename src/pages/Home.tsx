@@ -1,7 +1,6 @@
 import HeroSection from '../components/sections/HeroSection';
 import IntroSection from '../components/sections/IntroSection';
 import ProgramsSection from '../components/sections/ProgramsSection';
-import TeamSection from '../components/sections/TeamSection';
 import JoinSection from '../components/sections/JoinSection';
 import NewsletterSignup from '../components/sections/NewsletterSignup';
 
@@ -11,7 +10,6 @@ const Home = () => {
       <HeroSection />
       <IntroSection />
       <ProgramsSection />
-      <TeamSection />
       <JoinSection />
       <NewsletterSignup />
     </div>
